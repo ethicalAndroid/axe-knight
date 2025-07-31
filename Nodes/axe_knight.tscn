@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://co7b2f7gh5i1g"]
+[gd_scene load_steps=9 format=3 uid="uid://co7b2f7gh5i1g"]
 
 [ext_resource type="Script" path="res://Scripts/AxeKnight.gd" id="1_8q12i"]
 [ext_resource type="Shape2D" uid="uid://saihr05rsenh" path="res://Shapes/player_shape.tres" id="2_a36ui"]
@@ -7,21 +7,17 @@
 [ext_resource type="Script" path="res://Scripts/CastAt.gd" id="5_baduv"]
 [ext_resource type="Shape2D" uid="uid://qauq24gmkhoj" path="res://Shapes/slash.tres" id="6_mbwxb"]
 [ext_resource type="Texture2D" uid="uid://ba3mof5dtftsm" path="res://Sprites/test char.png" id="6_t2cim"]
+[ext_resource type="Shape2D" uid="uid://c5avdiprk12bh" path="res://Shapes/slam.tres" id="8_sx560"]
 
-[node name="AxeKnight" type="CharacterBody2D" node_paths=PackedStringArray("_dash_timer", "_aiming", "_bump_collision", "_slash_cast")]
+[node name="AxeKnight" type="CharacterBody2D" node_paths=PackedStringArray("_dash_timer", "_aiming", "_bump_collision", "_slash_cast", "_slam_stun_timer", "_slam_cast")]
 collision_mask = 17
 script = ExtResource("1_8q12i")
-_speed = 384.0
-_gravity = 1024.0
-_jump_speed = 640.0
-_dash_jump_speed = 960.0
 _dash_timer = NodePath("DashTimer")
-_dash_speed = 768.0
-_dash_end_jump = 128.0
-_dash_slam_requirement = 0.7
 _aiming = NodePath("LookAt")
 _bump_collision = NodePath("SlamCheck")
 _slash_cast = NodePath("SlashAttackCheck")
+_slam_stun_timer = NodePath("SlamTimer")
+_slam_cast = NodePath("SlamAttackCheck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_a36ui")
@@ -41,6 +37,10 @@ texture = ExtResource("4_y587k")
 wait_time = 0.6
 one_shot = true
 
+[node name="SlamTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [node name="SlamCheck" type="ShapeCast2D" parent="."]
 shape = ExtResource("2_a36ui")
 target_position = Vector2(5, 0)
@@ -52,6 +52,7 @@ _length = 1.0
 shape = ExtResource("6_mbwxb")
 target_position = Vector2(128, 0)
 collision_mask = 256
+collide_with_areas = true
 script = ExtResource("5_baduv")
 _length = 128.0
 
@@ -59,4 +60,11 @@ _length = 128.0
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("6_t2cim")
 
-[connection signal="timeout" from="DashTimer" to="." method="EndDash"]
+[node name="SlamAttackCheck" type="ShapeCast2D" parent="."]
+shape = ExtResource("8_sx560")
+target_position = Vector2(0, 0)
+collision_mask = 256
+collide_with_areas = true
+
+[connection signal="timeout" from="DashTimer" to="." method="DashTimerTimeout"]
+[connection signal="timeout" from="SlamTimer" to="." method="SlamTimerTimeout"]

@@ -1,67 +1,83 @@
-class_name AxeKnight extends CharacterBody2D
+class_name AxeKnight extends LegWalker
 
-@export var _speed: float
-@export var _gravity: float
-@export var _jump_speed: float
-@export var _dash_jump_speed: float
+@export var _dash_jump_speed: float = 960
 @export var _dash_timer: Timer
-@export var _dash_speed: float
-@export var _dash_end_jump: float
-@export var _dash_slam_requirement: float = 0.9
+@export var _dash_speed: float = 768
+@export var _dash_end_jump: float = 128
+@export var _dash_slam_requirement: float = 0.7
 @export var _aiming: LookAt
 @export var _bump_collision: CastAt
 @export var _slash_cast: CastAt
+@export var _slam_stun_timer: Timer
+@export var _slam_cast: ShapeCast2D
 
 
 enum Attack {
     Ready, DashSpent, BothSpent
 }
 
-var horizontal_input: float
-var vertical_momentum: float
-var jump_buffer: float
-var jump_released: bool
-var coyote_t: float
 var dash_direction: Vector2
 var attack_pressed: bool
 var attacks: Attack
 var temporary_speed: float = 0
+var input_mode_mouse: bool = true
+var look_direction: Vector2
+var dashing: bool
 
 func _ready() -> void:
+    dashing = false
     attacks = Attack.Ready
-    _bump_collision.enabled = false
-
-const JUMP_BUFFER_TIME = 0.1
-const COYOTE_TIME = 0.1
-const JUMP_RELEASE_CUT = 0.5
-
-func CancelDash():
-    _dash_timer.stop()
+    Dash(Vector2.DOWN)
 
 func EndDash():
     vertical_momentum = - _dash_end_jump
-    _bump_collision.enabled = false
+    dashing = false
+    _dash_timer.stop()
 
-func Slam(normal: Vector2):
+func DashTimerTimeout():
+    if dashing:
+        EndDash()
+
+func SlamTimerTimeout():
+    pass
+
+func Slam(_normal: Vector2):
     EndDash()
+    attacks = Attack.BothSpent
+    _slam_stun_timer.start()
+    var collisions = _slam_cast.get_collision_count()
+    for i in collisions:
+        _slam_cast.get_collider(i).call("OnHit", (_slam_cast.get_collision_point(i) - self.global_position).normalized())
+    
 
 func AxeSwing():
     var collisions = _slash_cast.get_collision_count()
     if (collisions > 0):
         attacks = Attack.Ready
+    for i in collisions:
+        _slash_cast.get_collider(i).call("OnHit", _aiming._direction)
 
 # INPUT
 func _process(_delta: float) -> void:
-    horizontal_input = Input.get_axis("Left", "Right")
-    if Input.is_action_just_pressed("Jump"):
-        jump_buffer = JUMP_BUFFER_TIME
-    elif Input.is_action_just_released("Jump"):
-        jump_released = true
+    GetInput()
+
+func GetInput():
+    look_direction = Input.get_vector("LookLeft", "LookRight", "LookUp", "LookDown")
     if Input.is_action_just_pressed("Attack"):
         attack_pressed = true
+    super ()
 
 func _physics_process(delta: float) -> void:
-    _aiming.SetAim(get_global_mouse_position())
+    if input_mode_mouse && look_direction:
+        input_mode_mouse = false
+    elif !input_mode_mouse && Input.get_last_mouse_velocity():
+        input_mode_mouse = true
+
+    if input_mode_mouse:
+        _aiming.SetAim(get_global_mouse_position())
+    elif look_direction:
+        _aiming.SetAim(self.global_position + look_direction)
+
     _slash_cast.Aim(_aiming._direction)
 
     ProcessAttack()
@@ -78,48 +94,48 @@ func ProcessAttack():
     if (attack_pressed):
         attack_pressed = false
 
-        if attacks == Attack.DashSpent:
+        if (attacks == Attack.DashSpent):
             attacks = Attack.BothSpent
             AxeSwing()
-            if IsDashing():
-                CancelDash()
-            else:
-                EndDash()
+            EndDash()
 
         elif (attacks == Attack.Ready):
-            attacks = Attack.DashSpent
-            dash_direction = _aiming._direction
-            _bump_collision.Aim(dash_direction)
-            _bump_collision.enabled = true
-            temporary_speed = 0
-            _dash_timer.start()
+            Dash(_aiming._direction)
+
+func Dash(direction: Vector2):
+    attacks = Attack.DashSpent
+    dash_direction = direction
+    _bump_collision.Aim(dash_direction)
+    temporary_speed = 0
+    dashing = true
+    _dash_timer.start()
+
 
 func IsDashing() -> bool:
-    return _dash_timer.time_left > 0
+    return dashing
 
 func CheckForSlam():
+    if !dashing:
+        return
     var collisions = _bump_collision.get_collision_count()
     if (collisions > 0):
         for i in collisions:
             var normal = _bump_collision.get_collision_normal(i)
             if (-normal.dot(dash_direction) > _dash_slam_requirement):
                 Slam(normal)
-
-func UpdateInput(delta: float):
-    if is_on_floor():
-        coyote_t = COYOTE_TIME
-    else:
-        coyote_t -= delta
-    jump_buffer -= delta
-    jump_released = false
+                return
 
 # MOVEMENT
 
 func GetMovement(delta: float):
-    if IsDashing():
+    if !_slam_stun_timer.is_stopped():
+        ProcessVerticalMomentum(delta)
+        velocity = Vector2(0, vertical_momentum)
+    elif IsDashing():
         DashMovement(delta)
     else:
         LegsMovement(delta)
+        
 
 func DashMovement(delta: float):
     var movement = Vector2.ZERO
@@ -134,30 +150,3 @@ func DashMovement(delta: float):
     else:
         movement = dash_direction * _dash_speed
     velocity = movement
-    
-func LegsMovement(delta: float):
-    var movement = Vector2.ZERO
-    movement.x = horizontal_input * _speed
-
-    if TryJump():
-        vertical_momentum = - _jump_speed
-        movement.y = vertical_momentum
-    elif is_on_floor():
-        vertical_momentum = 0
-    else:
-        ProcessVerticalMomentum(delta)
-        movement.y = vertical_momentum
-    velocity = movement
-
-func ProcessVerticalMomentum(delta: float):
-    if (jump_released && vertical_momentum < 0):
-        jump_released = false
-        vertical_momentum = vertical_momentum * JUMP_RELEASE_CUT
-    vertical_momentum += _gravity * delta
-
-func TryJump() -> bool:
-    if jump_buffer > 0 && coyote_t > 0:
-        jump_buffer = 0
-        coyote_t = 0
-        return true
-    return false
