@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://reoc0hubig32"]
+
+[ext_resource type="Texture2D" uid="uid://cqtxpbkyqk6df" path="res://Sprites/SquareTest-big.png" id="1_2r1wb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_as85h"]
+texture = ExtResource("1_2r1wb")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[resource]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 16
+physics_layer_0/collision_mask = 16
+sources/1 = SubResource("TileSetAtlasSource_as85h")
