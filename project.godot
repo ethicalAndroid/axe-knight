@@ -74,6 +74,13 @@ LookLeft={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_5="Char Collision"
+2d_physics/layer_6="Projectile Collision"
+2d_physics/layer_9="Attackable"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

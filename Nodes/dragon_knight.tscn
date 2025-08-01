@@ -1,28 +1,87 @@
-[gd_scene load_steps=9 format=3 uid="uid://sdu2w3jji1sq"]
+[gd_scene load_steps=17 format=3 uid="uid://sdu2w3jji1sq"]
 
 [ext_resource type="Script" path="res://Scripts/DragonKnight.gd" id="1_eue5p"]
+[ext_resource type="Script" path="res://Scripts/ShotSpawner.gd" id="2_35e6n"]
 [ext_resource type="Texture2D" uid="uid://difqjrstolhhi" path="res://Sprites/d-rightarm1.png" id="2_gm76f"]
+[ext_resource type="Script" path="res://Scripts/AxeSpawner.gd" id="2_h4o27"]
+[ext_resource type="Script" path="res://Scripts/TremorSlam.gd" id="2_tmg31"]
+[ext_resource type="PackedScene" uid="uid://bjsnlfbfhi2ct" path="res://Nodes/tremor.tscn" id="3_edif1"]
 [ext_resource type="Texture2D" uid="uid://mwp7r58q50rw" path="res://Sprites/d-leftarm1.png" id="3_knvck"]
+[ext_resource type="PackedScene" uid="uid://bfhl6o2g4e8lp" path="res://Nodes/summon_axe.tscn" id="3_obi0n"]
+[ext_resource type="PackedScene" uid="uid://b4m210e4cvgp6" path="res://Nodes/summon_shot.tscn" id="3_ssgex"]
 [ext_resource type="Texture2D" uid="uid://dyc8jli4eyr66" path="res://Sprites/d-body1.png" id="4_w00yy"]
 [ext_resource type="Texture2D" uid="uid://cuj5webkwhtfy" path="res://Sprites/d-sword1.png" id="5_10yiy"]
 [ext_resource type="Script" path="res://Scripts/LaserBlaster.gd" id="6_ygsgt"]
+[ext_resource type="PackedScene" uid="uid://bqh2smxu24lu" path="res://Nodes/laser_beam.tscn" id="7_58upb"]
 [ext_resource type="Texture2D" uid="uid://dpuu0uweg2dw2" path="res://Sprites/d-head1.png" id="7_e38es"]
+[ext_resource type="Script" path="res://Scripts/DragonAnimator.gd" id="8_tsn2a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4bbeg"]
 radius = 80.0
 
-[node name="DragonKnight" type="CharacterBody2D"]
+[node name="DragonKnight" type="CharacterBody2D" node_paths=PackedStringArray("_animator", "_axe", "_laser", "_shot", "_tremor", "_attack_timers")]
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_eue5p")
 _max_hp = 20
+_animator = NodePath("AnimationPlayer")
+_axe = NodePath("AnimBody/Flip/AxeSpawner")
+_laser = NodePath("AnimBody/LaserHead")
+_shot = NodePath("ShotSpawner")
+_tremor = NodePath("TremorSlam")
+_attack_timers = [NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast"), NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast")]
+_attack_list = Array[int]([0, 1, 2, 3])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4bbeg")
 
+[node name="TremorSlam" type="Node2D" parent="." node_paths=PackedStringArray("timer")]
+script = ExtResource("2_tmg31")
+y_pos = 824.0
+spacing = 96.0
+count = 15
+timer = NodePath("Timer")
+tremor = ExtResource("3_edif1")
+
+[node name="Timer" type="Timer" parent="TremorSlam"]
+wait_time = 0.1
+one_shot = true
+
+[node name="ShotSpawner" type="Node2D" parent="." node_paths=PackedStringArray("point")]
+script = ExtResource("2_35e6n")
+summon = ExtResource("3_ssgex")
+point = NodePath("Point")
+speed = 1200.0
+
+[node name="Point" type="Node2D" parent="ShotSpawner"]
+position = Vector2(0, -341)
+
 [node name="AnimBody" type="Node2D" parent="."]
 
 [node name="Flip" type="Node2D" parent="AnimBody"]
+scale = Vector2(-1, 1)
+
+[node name="AxeSpawner" type="Node2D" parent="AnimBody/Flip" node_paths=PackedStringArray("points", "timer")]
+position = Vector2(-66, -85)
+script = ExtResource("2_h4o27")
+points = [NodePath("p1"), NodePath("p2"), NodePath("p3")]
+velocties = Array[Vector2]([Vector2(800, -400), Vector2(700, -800), Vector2(600, -1200)])
+gravity = 1.0
+timer = NodePath("Timer")
+summon_axe = ExtResource("3_obi0n")
+
+[node name="p1" type="Node2D" parent="AnimBody/Flip/AxeSpawner"]
+position = Vector2(7, -71)
+
+[node name="p2" type="Node2D" parent="AnimBody/Flip/AxeSpawner"]
+position = Vector2(-54, -32)
+
+[node name="p3" type="Node2D" parent="AnimBody/Flip/AxeSpawner"]
+position = Vector2(-77, 33)
+
+[node name="Timer" type="Timer" parent="AnimBody/Flip/AxeSpawner"]
+wait_time = 0.15
+one_shot = true
 
 [node name="BackArm" type="Node2D" parent="AnimBody/Flip"]
 position = Vector2(-22, -1)
@@ -52,8 +111,8 @@ position = Vector2(-28, -46)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_10yiy")
 
-[node name="Head" type="Node2D" parent="AnimBody" node_paths=PackedStringArray("pivot", "sprite", "ray", "aim_timer", "charge_timer", "spend_timer")]
-position = Vector2(2, -20)
+[node name="LaserHead" type="Node2D" parent="AnimBody" node_paths=PackedStringArray("pivot", "sprite", "ray", "aim_timer", "charge_timer", "spend_timer", "danger")]
+position = Vector2(2, -27)
 script = ExtResource("6_ygsgt")
 pivot = NodePath("Pivot")
 sprite = NodePath("Pivot/HeadSprite")
@@ -61,29 +120,52 @@ ray = NodePath("RayCast2D")
 aim_timer = NodePath("Aim")
 charge_timer = NodePath("Charge")
 spend_timer = NodePath("Spent")
+beam = ExtResource("7_58upb")
+danger = NodePath("DangerLine")
 
-[node name="Pivot" type="Node2D" parent="AnimBody/Head"]
+[node name="DangerLine" type="Line2D" parent="AnimBody/LaserHead"]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(0, 1, 0, 0.392157)
 
-[node name="HeadSprite" type="Sprite2D" parent="AnimBody/Head/Pivot"]
-position = Vector2(0, 20)
+[node name="Pivot" type="Node2D" parent="AnimBody/LaserHead"]
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="HeadSprite" type="Sprite2D" parent="AnimBody/LaserHead/Pivot"]
+position = Vector2(0, 27)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_e38es")
 
-[node name="RayCast2D" type="RayCast2D" parent="AnimBody/Head"]
-collision_mask = 17
+[node name="RayCast2D" type="RayCast2D" parent="AnimBody/LaserHead"]
+collision_mask = 33
 
-[node name="Aim" type="Timer" parent="AnimBody/Head"]
-wait_time = 2.0
+[node name="Aim" type="Timer" parent="AnimBody/LaserHead"]
 one_shot = true
 
-[node name="Charge" type="Timer" parent="AnimBody/Head"]
-wait_time = 2.0
+[node name="Charge" type="Timer" parent="AnimBody/LaserHead"]
 one_shot = true
 
-[node name="Spent" type="Timer" parent="AnimBody/Head"]
-wait_time = 3.0
+[node name="Spent" type="Timer" parent="AnimBody/LaserHead"]
 one_shot = true
 
-[connection signal="timeout" from="AnimBody/Head/Aim" to="AnimBody/Head" method="StartCharging"]
-[connection signal="timeout" from="AnimBody/Head/Charge" to="AnimBody/Head" method="FinishCharging"]
-[connection signal="timeout" from="AnimBody/Head/Spent" to="AnimBody/Head" method="StartIdle"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("flip")]
+script = ExtResource("8_tsn2a")
+flip = NodePath("../AnimBody/Flip")
+
+[node name="AttackTimers" type="Node" parent="."]
+
+[node name="Fast" type="Timer" parent="AttackTimers"]
+one_shot = true
+
+[node name="Slow" type="Timer" parent="AttackTimers"]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="TremorSlam/Timer" to="TremorSlam" method="NextTremor"]
+[connection signal="timeout" from="AnimBody/Flip/AxeSpawner/Timer" to="AnimBody/Flip/AxeSpawner" method="OnTimerEnd"]
+[connection signal="timeout" from="AnimBody/LaserHead/Aim" to="AnimBody/LaserHead" method="StartCharging"]
+[connection signal="timeout" from="AnimBody/LaserHead/Charge" to="AnimBody/LaserHead" method="FinishCharging"]
+[connection signal="timeout" from="AnimBody/LaserHead/Spent" to="AnimBody/LaserHead" method="StartIdle"]
+[connection signal="timeout" from="AttackTimers/Fast" to="." method="NextAttack"]
+[connection signal="timeout" from="AttackTimers/Slow" to="." method="NextAttack"]

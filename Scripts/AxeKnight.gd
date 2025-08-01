@@ -72,7 +72,7 @@ func TrailTimerTimeout():
         trail.global_scale = _sprite.global_scale
         trail.flip_h = _sprite.flip_h
         trail.flip_v = _sprite.flip_v
-        get_node(Fading.TRAILS_PARENT).add_child(trail)
+        get_node(Fading.ROOT_PARENT).add_child(trail)
 
 func SlashTimerTimeout():
     if attacks == Attack.Charged:
@@ -91,7 +91,8 @@ func Slam(_normal: Vector2):
     _slam_stun_timer.start()
     var collisions = _slam_cast.get_collision_count()
     for i in collisions:
-        _slam_cast.get_collider(i).call("OnHit", (_slam_cast.get_collision_point(i) - self.global_position).normalized())
+        if _slam_cast.get_collider(i) != null:
+            _slam_cast.get_collider(i).call("OnHit", (_slam_cast.get_collision_point(i) - self.global_position).normalized())
     
 
 func AxeSwing():
@@ -102,7 +103,8 @@ func AxeSwing():
     if (collisions > 0):
         attacks = Attack.Charged
     for i in collisions:
-        _slash_cast.get_collider(i).call("OnHit", _aiming._direction)
+        if _slash_cast.get_collider(i) != null:
+            _slash_cast.get_collider(i).call("OnHit", _aiming._direction)
 
 # INPUT
 func _process(_delta: float) -> void:

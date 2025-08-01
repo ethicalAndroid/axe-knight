@@ -1,6 +1,6 @@
 class_name Fading extends Sprite2D
 
-const TRAILS_PARENT = "/root/Game/Trails"
+const ROOT_PARENT = "/root/Game/Trails"
 
 @export var lifetime: float
 @export var gradient: Gradient
