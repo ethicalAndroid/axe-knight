@@ -1,0 +1,14 @@
+class_name Fading extends Sprite2D
+
+const TRAILS_PARENT = "/root/Game/Trails"
+
+@export var lifetime: float
+@export var gradient: Gradient
+
+var life: float = 0
+
+func _process(delta: float) -> void:
+    life += delta
+    modulate = gradient.sample(inverse_lerp(0, lifetime, life))
+    if (life > lifetime):
+        queue_free()

@@ -1,23 +1,336 @@
-[gd_scene load_steps=9 format=3 uid="uid://co7b2f7gh5i1g"]
+[gd_scene load_steps=37 format=3 uid="uid://co7b2f7gh5i1g"]
 
 [ext_resource type="Script" path="res://Scripts/AxeKnight.gd" id="1_8q12i"]
 [ext_resource type="Shape2D" uid="uid://saihr05rsenh" path="res://Shapes/player_shape.tres" id="2_a36ui"]
+[ext_resource type="PackedScene" uid="uid://bjc377441wrlv" path="res://Nodes/red_trail.tscn" id="2_al7ix"]
 [ext_resource type="Script" path="res://Scripts/LookAt.gd" id="4_8x1hy"]
 [ext_resource type="Texture2D" uid="uid://cyx0ha2eq5vjp" path="res://Sprites/point.png" id="4_y587k"]
 [ext_resource type="Script" path="res://Scripts/CastAt.gd" id="5_baduv"]
 [ext_resource type="Shape2D" uid="uid://qauq24gmkhoj" path="res://Shapes/slash.tres" id="6_mbwxb"]
-[ext_resource type="Texture2D" uid="uid://ba3mof5dtftsm" path="res://Sprites/test char.png" id="6_t2cim"]
 [ext_resource type="Shape2D" uid="uid://c5avdiprk12bh" path="res://Shapes/slam.tres" id="8_sx560"]
+[ext_resource type="Texture2D" uid="uid://bocq7ctjcxg6k" path="res://Sprites/k-idle.png" id="9_viiqw"]
+[ext_resource type="Texture2D" uid="uid://ureqvts3j478" path="res://Sprites/k-run1.png" id="9_whoha"]
+[ext_resource type="Texture2D" uid="uid://cgkrbpc0s2uha" path="res://Sprites/k-run2.png" id="10_3eoyy"]
+[ext_resource type="Script" path="res://Scripts/KnightAnimator.gd" id="11_0qkeg"]
+[ext_resource type="Texture2D" uid="uid://cpon2sgc2svnu" path="res://Sprites/k-jump1.png" id="11_aodbv"]
+[ext_resource type="Texture2D" uid="uid://dj0g7tc64r7ag" path="res://Sprites/k-jump2.png" id="12_iydka"]
+[ext_resource type="Texture2D" uid="uid://cod73vbj7x1g4" path="res://Sprites/k-jump3.png" id="13_h3c6l"]
+[ext_resource type="Texture2D" uid="uid://do831gtrb5dmg" path="res://Sprites/k-dash.png" id="15_j21ak"]
+[ext_resource type="Texture2D" uid="uid://clev85wfwdgv4" path="res://Sprites/k-slide.png" id="16_ulfqv"]
+[ext_resource type="Texture2D" uid="uid://3kr0ny1dqtsw" path="res://Sprites/k-slash1.png" id="17_byysx"]
+[ext_resource type="Texture2D" uid="uid://dwkkkyurk6po0" path="res://Sprites/k-slash2.png" id="18_n5cor"]
+[ext_resource type="Texture2D" uid="uid://cht76k2poa2co" path="res://Sprites/k-slash3.png" id="19_qv7ah"]
+[ext_resource type="Texture2D" uid="uid://bgw5270o7tj51" path="res://Sprites/k-hurt.png" id="20_kj1d1"]
+[ext_resource type="Texture2D" uid="uid://v4jdhqej0524" path="res://Sprites/k-slam.png" id="21_q53cn"]
+[ext_resource type="Script" path="res://Scripts/Blink.gd" id="22_6e8qj"]
 
-[node name="AxeKnight" type="CharacterBody2D" node_paths=PackedStringArray("_dash_timer", "_aiming", "_bump_collision", "_slash_cast", "_slam_stun_timer", "_slam_cast")]
-collision_mask = 17
+[sub_resource type="Animation" id="Animation_ljl05"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_viiqw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 60)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.15, 0.15)]
+}
+
+[sub_resource type="Animation" id="Animation_0gks3"]
+resource_name = "dash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_j21ak")]
+}
+
+[sub_resource type="Animation" id="Animation_cjc6o"]
+resource_name = "hurt"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_kj1d1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.15, 0.2), Vector2(0.15, 0.14), Vector2(0.15, 0.15)]
+}
+
+[sub_resource type="Animation" id="Animation_ynfpq"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_viiqw")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.5),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.03), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3fyhl"]
+resource_name = "jump_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_h3c6l")]
+}
+
+[sub_resource type="Animation" id="Animation_i0d5m"]
+resource_name = "jump_middle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_iydka")]
+}
+
+[sub_resource type="Animation" id="Animation_o5nws"]
+resource_name = "jump_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_aodbv")]
+}
+
+[sub_resource type="Animation" id="Animation_1gdwt"]
+resource_name = "run"
+length = 0.533
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_whoha"), ExtResource("10_3eoyy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.266667, 0.366667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 65), Vector2(0, 55), Vector2(0, 65), Vector2(0, 55), Vector2(0, 60)]
+}
+
+[sub_resource type="Animation" id="Animation_uwqda"]
+resource_name = "slam"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("21_q53cn")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1.2), Vector2(1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kiqtr"]
+resource_name = "slash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_byysx"), ExtResource("18_n5cor"), ExtResource("19_qv7ah")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.15, 0.2), Vector2(0.15, 0.14), Vector2(0.15, 0.15)]
+}
+
+[sub_resource type="Animation" id="Animation_ptb23"]
+resource_name = "slide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_ulfqv")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qpb48"]
+_data = {
+"RESET": SubResource("Animation_ljl05"),
+"dash": SubResource("Animation_0gks3"),
+"hurt": SubResource("Animation_cjc6o"),
+"idle": SubResource("Animation_ynfpq"),
+"jump_down": SubResource("Animation_3fyhl"),
+"jump_middle": SubResource("Animation_i0d5m"),
+"jump_up": SubResource("Animation_o5nws"),
+"run": SubResource("Animation_1gdwt"),
+"slam": SubResource("Animation_uwqda"),
+"slash": SubResource("Animation_kiqtr"),
+"slide": SubResource("Animation_ptb23")
+}
+
+[sub_resource type="Gradient" id="Gradient_m5scg"]
+offsets = PackedFloat32Array(0, 0.896882, 1)
+colors = PackedColorArray(0.831923, 7.70092e-07, 0.417719, 0.5, 1, 1, 1, 0.513189, 1, 1, 1, 1)
+
+[node name="AxeKnight" type="CharacterBody2D" node_paths=PackedStringArray("_dash_timer", "_aiming", "_bump_collision", "_slash_cast", "_slam_stun_timer", "_slam_cast", "_hurt_stun_timer", "_invicibility_timer", "_slash_timer", "_sprite", "_animator")]
+collision_mask = 16
 script = ExtResource("1_8q12i")
-_dash_timer = NodePath("DashTimer")
+_dash_timer = NodePath("Timers/Dash")
 _aiming = NodePath("LookAt")
 _bump_collision = NodePath("SlamCheck")
 _slash_cast = NodePath("SlashAttackCheck")
-_slam_stun_timer = NodePath("SlamTimer")
+_slam_stun_timer = NodePath("Timers/Slam")
 _slam_cast = NodePath("SlamAttackCheck")
+_hurt_stun_timer = NodePath("Timers/Stun")
+_invicibility_timer = NodePath("Timers/Invincibility")
+_slash_timer = NodePath("Timers/Slash")
+_trail = ExtResource("2_al7ix")
+_sprite = NodePath("Pivot/Sprite")
+_animator = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_a36ui")
@@ -32,14 +345,6 @@ position = Vector2(128, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="LookAt/Node2D"]
 texture = ExtResource("4_y587k")
-
-[node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.6
-one_shot = true
-
-[node name="SlamTimer" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
 
 [node name="SlamCheck" type="ShapeCast2D" parent="."]
 shape = ExtResource("2_a36ui")
@@ -56,15 +361,59 @@ collide_with_areas = true
 script = ExtResource("5_baduv")
 _length = 128.0
 
-[node name="TestChar" type="Sprite2D" parent="."]
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("6_t2cim")
-
 [node name="SlamAttackCheck" type="ShapeCast2D" parent="."]
 shape = ExtResource("8_sx560")
 target_position = Vector2(0, 0)
 collision_mask = 256
 collide_with_areas = true
 
-[connection signal="timeout" from="DashTimer" to="." method="DashTimerTimeout"]
-[connection signal="timeout" from="SlamTimer" to="." method="SlamTimerTimeout"]
+[node name="Timers" type="Node" parent="."]
+
+[node name="Dash" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="Slam" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="Stun" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
+
+[node name="Invincibility" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Trail" type="Timer" parent="Timers"]
+wait_time = 0.12
+autostart = true
+
+[node name="Slash" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("sprite")]
+libraries = {
+"": SubResource("AnimationLibrary_qpb48")
+}
+autoplay = "idle"
+script = ExtResource("11_0qkeg")
+sprite = NodePath("../Pivot/Sprite")
+v_speed_margin = 200.0
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, 60)
+
+[node name="Sprite" type="Sprite2D" parent="Pivot"]
+position = Vector2(0, -60)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("9_viiqw")
+script = ExtResource("22_6e8qj")
+length = 1.0
+gradient = SubResource("Gradient_m5scg")
+
+[connection signal="timeout" from="Timers/Dash" to="." method="DashTimerTimeout"]
+[connection signal="timeout" from="Timers/Slam" to="." method="SlamTimerTimeout"]
+[connection signal="timeout" from="Timers/Stun" to="." method="StunTimerTimeout"]
+[connection signal="timeout" from="Timers/Trail" to="." method="TrailTimerTimeout"]
+[connection signal="timeout" from="Timers/Slash" to="." method="SlashTimerTimeout"]
