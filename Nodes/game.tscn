@@ -75,9 +75,10 @@ centered = false
 
 [node name="ScreenTransition" parent="Room" instance=ExtResource("5_s2iuk")]
 
-[node name="AxeKnight" parent="." instance=ExtResource("2_au7ww")]
+[node name="AxeKnight" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("2_au7ww")]
 process_mode = 4
 position = Vector2(96, 553)
+_target = NodePath("../DragonKnight")
 
 [node name="DragonKnight" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("6_wt7pw")]
 process_mode = 4
