@@ -12,5 +12,5 @@ func Talk(frame: DFrame):
     audio.stream = voices[frame.sprite]
     audio.play()
 
-func ShowSprite(talk_sprite: Dialogue.TalkSprite):
+func ShowSprite(talk_sprite: DDialogue.TalkSprite):
     sprite.texture = sprites[talk_sprite]

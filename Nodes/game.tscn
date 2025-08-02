@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_uem2s"]
 [ext_resource type="PackedScene" uid="uid://b47ocalwjtfgw" path="res://Nodes/battle.tscn" id="2_4j5bd"]
-[ext_resource type="Script" path="res://Scripts/Dialogue.gd" id="4_7ptc5"]
+[ext_resource type="Script" path="res://Scripts/DDialogue.gd" id="4_7ptc5"]
 [ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="4_jhfk8"]
 [ext_resource type="Texture2D" uid="uid://cqtxpbkyqk6df" path="res://Sprites/SquareTest-big.png" id="5_0kcbe"]
 [ext_resource type="PackedScene" uid="uid://dsmjm30segrh2" path="res://Nodes/screen_transition.tscn" id="5_s2iuk"]
@@ -374,13 +374,68 @@ offset_top = -41.0
 offset_bottom = 42.0
 text = "[center]Finish It[/center]"
 
+[node name="Final" type="Control" parent="Choices" node_paths=PackedStringArray("choices")]
+process_mode = 4
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_whmcp")
+choices = [NodePath("pivot/No"), NodePath("pivot/Yes")]
+
+[node name="pivot" type="Control" parent="Choices/Final"]
+anchors_preset = 0
+offset_left = -150.0
+offset_top = -50.0
+offset_right = -150.0
+offset_bottom = -50.0
+
+[node name="No" parent="Choices/Final/pivot" instance=ExtResource("20_70yp2")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -400.0
+offset_right = -100.0
+offset_bottom = 100.0
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(150, 50)
+direction = Vector2(-1, 0)
+
+[node name="RichTextLabel" parent="Choices/Final/pivot/No" index="1"]
+text = "[center]No...[/center]"
+
+[node name="Yes" parent="Choices/Final/pivot" instance=ExtResource("20_70yp2")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 400.0
+offset_right = 700.0
+offset_bottom = 100.0
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(150, 50)
+direction = Vector2(1, 0)
+
+[node name="RichTextLabel" parent="Choices/Final/pivot/Yes" index="1"]
+text = "[center]Yes![/center]"
+
+[connection signal="final_menu" from="." to="Choices/Final" method="Ready"]
 [connection signal="loop_menu" from="." to="Choices/Loop" method="Ready"]
 [connection signal="animation_finished" from="ScreenTransition" to="." method="AnimationEnded"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Talk" to="Choices/Loop" method="Choose"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Loop!" to="." method="StartBattle"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Loop!" to="Choices/Loop" method="Choose"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Finish It" to="Choices/Loop" method="Choose"]
+[connection signal="choice_made" from="Choices/Final/pivot/No" to="." method="FinalLoopNo"]
+[connection signal="choice_made" from="Choices/Final/pivot/No" to="Choices/Final" method="Choose"]
+[connection signal="choice_made" from="Choices/Final/pivot/Yes" to="." method="FinalLoopYes"]
+[connection signal="choice_made" from="Choices/Final/pivot/Yes" to="Choices/Final" method="Choose"]
 
 [editable path="Choices/Loop/pivot/Talk"]
 [editable path="Choices/Loop/pivot/Loop!"]
 [editable path="Choices/Loop/pivot/Finish It"]
+[editable path="Choices/Final/pivot/No"]
+[editable path="Choices/Final/pivot/Yes"]

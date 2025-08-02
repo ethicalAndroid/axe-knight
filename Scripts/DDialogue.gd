@@ -1,4 +1,4 @@
-class_name Dialogue extends Control
+class_name DDialogue extends Control
 
 enum TalkSprite {
     Normal, Happy, Serious, Confused, Yap1, Yap2
