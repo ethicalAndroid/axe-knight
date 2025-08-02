@@ -21,7 +21,6 @@
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_eue5p")
-_max_hp = 20
 _animator = NodePath("AnimationPlayer")
 _axe = NodePath("AnimBody/Flip/AxeSpawner")
 _laser = NodePath("AnimBody/LaserHead")

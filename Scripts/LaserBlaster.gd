@@ -38,7 +38,7 @@ func FinishCharging():
 	danger.visible = false
 
 	var effect: LaserBeam = beam.instantiate()
-	get_node(LaserBeam.ROOT_PARENT).add_child(effect)
+	get_node(Fading.ROOT_PARENT).add_child(effect)
 	effect.Create(self.global_position, self.global_position + ray.target_position)
 
 	if ray.get_collider().is_class("CharacterBody2D"):

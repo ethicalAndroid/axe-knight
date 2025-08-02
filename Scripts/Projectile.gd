@@ -2,7 +2,7 @@ class_name Projectile extends RigidBody2D
 
 var velocity: Vector2
 
-const ROOT_PARENT = "/root/Game/Projectiles"
+const ROOT_PARENT = "/root/Game/Battle/Projectiles"
 
 func OnBodyEntered(body: Node):
 	if body.is_class("CharacterBody2D"):

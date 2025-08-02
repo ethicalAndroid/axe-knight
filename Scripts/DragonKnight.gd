@@ -1,7 +1,6 @@
 class_name DragonKnight extends CharacterBody2D
 
 @export var _run_speed: float = 384
-@export var _max_hp: int
 @export var _gravity: float = 1024
 @export var _jump_speed: float = 640
 @export var _target: AxeKnight
@@ -25,7 +24,6 @@ enum Attack {
 
 var horizontal_input: float
 var vertical_momentum: float
-var current_hp: int
 var just_jumped: bool
 var index: int = 0
 var dash_direction: Vector2
@@ -33,6 +31,8 @@ var dash_time: float
 var d_index: int = 0
 
 const FORWARD_AIM_TIME = 0.2
+
+signal on_hit()
 
 func NextAttack():
     var attack: Attack = _attack_list[index]
@@ -52,7 +52,6 @@ func NextAttack():
     index = (index + 1) % _attack_list.size()
 
 func _ready():
-    current_hp = _max_hp
     propagate_call("SetTarget", [_target])
     _attack_timers[0].start()
 
@@ -65,7 +64,7 @@ func OnHit(_direction: Vector2, _melee: bool):
         _target.Clash(global_position)
         EndDash()
         return
-    current_hp -= 1
+    on_hit.emit()
     
 
 func _physics_process(delta: float) -> void:

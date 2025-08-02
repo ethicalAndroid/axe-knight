@@ -6,8 +6,6 @@ class_name LaserBeam extends Line2D
 
 var life: float = 0
 
-const ROOT_PARENT = "/root/Game/Trails"
-
 func Create(pos: Vector2, aim: Vector2):
     points = [pos, aim]
 

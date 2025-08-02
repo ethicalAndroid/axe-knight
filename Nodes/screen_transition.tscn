@@ -1,53 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsmjm30segrh2"]
+[gd_scene load_steps=8 format=3 uid="uid://dsmjm30segrh2"]
 
-[ext_resource type="Texture2D" uid="uid://br2mxrd2cqit6" path="res://Sprites/b-trees.png" id="1_18ih4"]
-
-[sub_resource type="Animation" id="Animation_533e2"]
-resource_name = "screen_open"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Room/ScreenTransition/Node2D/Left:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-1920, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Room/ScreenTransition/Node2D/Right:offset")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(0.2, 1),
-"update": 0,
-"values": [Vector2(1920, 0), Vector2(3840, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Room/ScreenTransition/Node2D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(0, 1),
-"update": 1,
-"values": [true, false]
-}
+[ext_resource type="Script" path="res://Scripts/Spin.gd" id="1_1c2q1"]
+[ext_resource type="Texture2D" uid="uid://dmg5ckjrt3an" path="res://Sprites/window.png" id="1_o8acr"]
+[ext_resource type="Texture2D" uid="uid://cfith24wl15cr" path="res://Sprites/vortex.png" id="2_bctmc"]
 
 [sub_resource type="Animation" id="Animation_tgnpy"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Room/ScreenTransition/Node2D/Left:offset")
+tracks/0/path = NodePath("Spin/Left:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -59,19 +21,19 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Room/ScreenTransition/Node2D/Right:offset")
+tracks/1/path = NodePath("Spin/Right:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1920, 0)]
+"values": [Vector2(960, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Room/ScreenTransition/Node2D:visible")
+tracks/2/path = NodePath("Spin:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -87,31 +49,31 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Room/ScreenTransition/Node2D/Left:offset")
+tracks/0/path = NodePath("Spin/Left:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(0.2, 0.2),
 "update": 0,
-"values": [Vector2(-1920, 0), Vector2(0, 0)]
+"values": [Vector2(-960, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Room/ScreenTransition/Node2D/Right:offset")
+tracks/1/path = NodePath("Spin/Right:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(0.2, 0.2),
 "update": 0,
-"values": [Vector2(3840, 0), Vector2(1920, 0)]
+"values": [Vector2(1920, 0), Vector2(960, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Room/ScreenTransition/Node2D:visible")
+tracks/2/path = NodePath("Spin:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -119,6 +81,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_533e2"]
+resource_name = "screen_open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spin/Left:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-960, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spin/Right:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(960, 0), Vector2(1920, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spin:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xlq8g"]
@@ -129,25 +131,41 @@ _data = {
 }
 
 [node name="ScreenTransition" type="AnimationPlayer"]
-root_node = NodePath("../..")
+root_node = NodePath(".")
 libraries = {
 "": SubResource("AnimationLibrary_xlq8g")
 }
 
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
+[node name="Spin" type="Node2D" parent="." node_paths=PackedStringArray("spins")]
+z_index = 999
+script = ExtResource("1_1c2q1")
+spins = [NodePath("Left/Pivot/Vortex"), NodePath("Right/Pivot/Vortex")]
+speed = 1.0
 
-[node name="Left" type="Sprite2D" parent="Node2D"]
-modulate = Color(0, 0, 0, 1)
-z_index = 99
-scale = Vector2(0.5, 1)
-texture = ExtResource("1_18ih4")
+[node name="Left" type="Sprite2D" parent="Spin"]
+clip_children = 1
+texture = ExtResource("1_o8acr")
 centered = false
 
-[node name="Right" type="Sprite2D" parent="Node2D"]
-modulate = Color(0, 0, 0, 1)
-z_index = 99
-scale = Vector2(0.5, 1)
-texture = ExtResource("1_18ih4")
+[node name="Pivot" type="Node2D" parent="Spin/Left"]
+position = Vector2(960, 540)
+
+[node name="Vortex" type="Sprite2D" parent="Spin/Left/Pivot"]
+modulate = Color(0.525101, 0.525101, 0.525101, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_bctmc")
+
+[node name="Right" type="Sprite2D" parent="Spin"]
+clip_children = 1
+texture = ExtResource("1_o8acr")
 centered = false
-offset = Vector2(1920, 0)
+offset = Vector2(960, 0)
+
+[node name="Pivot" type="Node2D" parent="Spin/Right"]
+position = Vector2(960, 540)
+
+[node name="Vortex" type="Sprite2D" parent="Spin/Right/Pivot"]
+modulate = Color(0.525101, 0.525101, 0.525101, 1)
+clip_children = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_bctmc")

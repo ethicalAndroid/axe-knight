@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjs88tnrucxfl"]
+
+[ext_resource type="Script" path="res://Scripts/Choice.gd" id="1_akva6"]
+[ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="2_8rl35"]
+[ext_resource type="Theme" uid="uid://dctpyyh1dray1" path="res://button.tres" id="3_qrjsw"]
+
+[sub_resource type="Gradient" id="Gradient_s0lnt"]
+colors = PackedColorArray(0.254902, 0.254902, 0.262745, 1, 1, 1, 1, 1)
+
+[node name="Choice" type="Control" node_paths=PackedStringArray("sprite")]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1520.0
+offset_bottom = -980.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_akva6")
+charge_max = 0.7
+gradient = SubResource("Gradient_s0lnt")
+sprite = NodePath("NinePatchRect")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(0.254902, 0.254902, 0.262745, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8rl35")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -43.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_qrjsw")
+bbcode_enabled = true
+text = "[center]Talk[/center]"
+fit_content = true
