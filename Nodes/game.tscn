@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://bu0kfv25rq6qt"]
+[gd_scene load_steps=29 format=3 uid="uid://bu0kfv25rq6qt"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_uem2s"]
 [ext_resource type="PackedScene" uid="uid://b47ocalwjtfgw" path="res://Nodes/battle.tscn" id="2_4j5bd"]
+[ext_resource type="JSON" path="res://Dialogue/intro.json" id="3_n821p"]
 [ext_resource type="Script" path="res://Scripts/DDialogue.gd" id="4_7ptc5"]
 [ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="4_jhfk8"]
 [ext_resource type="Texture2D" uid="uid://cqtxpbkyqk6df" path="res://Sprites/SquareTest-big.png" id="5_0kcbe"]
@@ -58,6 +59,45 @@ _data = {
 "bounce": SubResource("Animation_ueviq")
 }
 
+[sub_resource type="Animation" id="Animation_1qw1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(450, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Knight/LeftBounce:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-225, 1130)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mage/RightBounce:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2145, 1130)]
+}
+
 [sub_resource type="Animation" id="Animation_5xcbo"]
 resource_name = "intro"
 length = 0.4
@@ -96,45 +136,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Vector2(2145, 1130), Vector2(1695, 1130)]
-}
-
-[sub_resource type="Animation" id="Animation_1qw1m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(450, 1080)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Knight/LeftBounce:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-225, 1130)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Mage/RightBounce:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2145, 1130)]
 }
 
 [sub_resource type="Animation" id="Animation_ihcyk"]
@@ -184,10 +185,12 @@ _data = {
 "outro": SubResource("Animation_ihcyk")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("transition")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("transition", "dialogue")]
 script = ExtResource("1_uem2s")
 transition = NodePath("ScreenTransition")
 battle_scene = ExtResource("2_4j5bd")
+dialogue = NodePath("Control")
+intro = ExtResource("3_n821p")
 
 [node name="ScreenTransition" parent="." instance=ExtResource("5_s2iuk")]
 
@@ -273,6 +276,7 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/Knight"]
+volume_db = -5.0
 
 [node name="Mage" type="Node2D" parent="Control" node_paths=PackedStringArray("sprite", "bounce", "audio")]
 script = ExtResource("6_kax5m")
@@ -425,6 +429,7 @@ text = "[center]Yes![/center]"
 [connection signal="final_menu" from="." to="Choices/Final" method="Ready"]
 [connection signal="loop_menu" from="." to="Choices/Loop" method="Ready"]
 [connection signal="animation_finished" from="ScreenTransition" to="." method="AnimationEnded"]
+[connection signal="done" from="Control" to="." method="DDialogueEnded"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Talk" to="Choices/Loop" method="Choose"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Loop!" to="." method="StartBattle"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Loop!" to="Choices/Loop" method="Choose"]
