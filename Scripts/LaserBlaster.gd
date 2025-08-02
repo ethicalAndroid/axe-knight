@@ -42,7 +42,8 @@ func FinishCharging():
 	effect.Create(self.global_position, self.global_position + ray.target_position)
 
 	if ray.get_collider().is_class("CharacterBody2D"):
-		ray.get_collider().call("OnHit", direction)
+		var c: AxeKnight = ray.get_collider()
+		c.OnHit(direction, false)
 
 func StartIdle():
 	state = State.Idle

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/DragonKnight.gd" id="1_eue5p"]
 [ext_resource type="Script" path="res://Scripts/ShotSpawner.gd" id="2_35e6n"]
+[ext_resource type="Shape2D" uid="uid://c5feokyluy7s4" path="res://Shapes/dragon_shape.tres" id="2_fcstp"]
 [ext_resource type="Texture2D" uid="uid://difqjrstolhhi" path="res://Sprites/d-rightarm1.png" id="2_gm76f"]
 [ext_resource type="Script" path="res://Scripts/AxeSpawner.gd" id="2_h4o27"]
 [ext_resource type="Script" path="res://Scripts/TremorSlam.gd" id="2_tmg31"]
@@ -16,10 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dpuu0uweg2dw2" path="res://Sprites/d-head1.png" id="7_e38es"]
 [ext_resource type="Script" path="res://Scripts/DragonAnimator.gd" id="8_tsn2a"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4bbeg"]
-radius = 80.0
-
-[node name="DragonKnight" type="CharacterBody2D" node_paths=PackedStringArray("_animator", "_axe", "_laser", "_shot", "_tremor", "_attack_timers")]
+[node name="DragonKnight" type="CharacterBody2D" node_paths=PackedStringArray("_animator", "_axe", "_laser", "_shot", "_tremor", "_attack_timers", "_dash_attack")]
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_eue5p")
@@ -29,17 +27,23 @@ _axe = NodePath("AnimBody/Flip/AxeSpawner")
 _laser = NodePath("AnimBody/LaserHead")
 _shot = NodePath("ShotSpawner")
 _tremor = NodePath("TremorSlam")
-_attack_timers = [NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast"), NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast")]
-_attack_list = Array[int]([0, 1, 2, 3])
+_dash_speed = 1152.0
+_attack_timers = [NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast"), NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast"), NodePath("AttackTimers/Fast")]
+_attack_list = Array[int]([1, 0, 4, 2, 3])
+_dash_attack = NodePath("DashAttack")
+
+[node name="DashAttack" type="ShapeCast2D" parent="."]
+shape = ExtResource("2_fcstp")
+target_position = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4bbeg")
+shape = ExtResource("2_fcstp")
 
 [node name="TremorSlam" type="Node2D" parent="." node_paths=PackedStringArray("timer")]
 script = ExtResource("2_tmg31")
 y_pos = 824.0
 spacing = 96.0
-count = 15
+count = 19
 timer = NodePath("Timer")
 tremor = ExtResource("3_edif1")
 

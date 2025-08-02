@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bu0kfv25rq6qt"]
+[gd_scene load_steps=22 format=4 uid="uid://bu0kfv25rq6qt"]
 
 [ext_resource type="TileSet" uid="uid://reoc0hubig32" path="res://Tilesets/main_tiles.tres" id="1_4sktd"]
 [ext_resource type="PackedScene" uid="uid://co7b2f7gh5i1g" path="res://Nodes/axe_knight.tscn" id="2_au7ww"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cqtxpbkyqk6df" path="res://Sprites/SquareTest-big.png" id="4_qa00s"]
 [ext_resource type="PackedScene" uid="uid://dsmjm30segrh2" path="res://Nodes/screen_transition.tscn" id="5_s2iuk"]
 [ext_resource type="PackedScene" uid="uid://sdu2w3jji1sq" path="res://Nodes/dragon_knight.tscn" id="6_wt7pw"]
+[ext_resource type="FontFile" uid="uid://dnydjkbstusui" path="res://Oldtimer.ttf" id="9_b6jou"]
+[ext_resource type="Script" path="res://Scripts/TextTimer.gd" id="10_e7xdb"]
+[ext_resource type="Script" path="res://Scripts/LifeCount.gd" id="11_5jk1d"]
+[ext_resource type="Texture2D" uid="uid://c6we6b7w7l6fw" path="res://Sprites/Circle.png" id="11_xrptc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nseeh"]
 texture = ExtResource("3_7naqk")
@@ -33,6 +37,80 @@ physics_layer_0/collision_layer = 32
 physics_layer_0/collision_mask = 32
 sources/1 = SubResource("TileSetAtlasSource_vnc6u")
 sources/0 = SubResource("TileSetAtlasSource_nseeh")
+
+[sub_resource type="Theme" id="Theme_jdiy4"]
+default_font = ExtResource("9_b6jou")
+default_font_size = 105
+
+[sub_resource type="Gradient" id="Gradient_oaney"]
+offsets = PackedFloat32Array(0, 0.625, 0.774105, 0.834711, 0.875)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="Curve" id="Curve_wvjdj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.625, 0), 0.0, 6.0, 0, 0, Vector2(0.774, 0.5), 0.0, 0.0, 0, 0, Vector2(0.835, 0.5), 0.0, 6.0, 0, 0, Vector2(0.875, 1), 0.0, 6.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Animation" id="Animation_j35up"]
+resource_name = "bob"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1.2),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2, 1.8),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_8oviq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jurws"]
+_data = {
+"RESET": SubResource("Animation_8oviq"),
+"bob": SubResource("Animation_j35up")
+}
 
 [node name="Game" type="Node2D"]
 
@@ -80,9 +158,105 @@ process_mode = 4
 position = Vector2(96, 553)
 _target = NodePath("../DragonKnight")
 
-[node name="DragonKnight" parent="." node_paths=PackedStringArray("_target") instance=ExtResource("6_wt7pw")]
+[node name="DragonKnight" parent="." node_paths=PackedStringArray("_target", "_dash_targets") instance=ExtResource("6_wt7pw")]
 process_mode = 4
 position = Vector2(1486, 728)
 _target = NodePath("../AxeKnight")
+_dash_targets = [NodePath("../Dashes/Left"), null, NodePath("../Dashes/Right")]
+
+[node name="Dashes" type="Node2D" parent="."]
+position = Vector2(960, 728)
+
+[node name="Right" type="Node2D" parent="Dashes"]
+position = Vector2(800, 0)
+
+[node name="Left" type="Node2D" parent="Dashes"]
+position = Vector2(-800, 0)
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="Container"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 140.0
+grow_horizontal = 0
+
+[node name="TextTimer" type="RichTextLabel" parent="Container/Control"]
+z_index = 100
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.808854
+anchor_right = 0.996354
+anchor_bottom = 0.0925926
+offset_left = -323.542
+offset_right = 1.45834
+offset_bottom = 127.037
+grow_horizontal = 0
+theme = SubResource("Theme_jdiy4")
+text = "40:00"
+text_direction = 1
+script = ExtResource("10_e7xdb")
+lifetime = 40.0
+gradient = SubResource("Gradient_oaney")
+shake = 5.0
+shake_curve = SubResource("Curve_wvjdj")
+metadata/_edit_use_anchors_ = true
+
+[node name="HP" type="Control" parent="Container" node_paths=PackedStringArray("life_sprites")]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 460.0
+offset_bottom = 180.0
+script = ExtResource("11_5jk1d")
+life_tex = ExtResource("11_xrptc")
+dead_tex = ExtResource("4_qa00s")
+life_sprites = [NodePath("1"), NodePath("2"), NodePath("3")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Container/HP"]
+libraries = {
+"": SubResource("AnimationLibrary_jurws")
+}
+autoplay = "bob"
+
+[node name="1" type="TextureRect" parent="Container/HP"]
+z_index = 100
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("11_xrptc")
+
+[node name="2" type="TextureRect" parent="Container/HP"]
+z_index = 100
+layout_mode = 0
+offset_left = 140.0
+offset_right = 240.0
+offset_bottom = 100.0
+scale = Vector2(0.932653, 0.932653)
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("11_xrptc")
+
+[node name="3" type="TextureRect" parent="Container/HP"]
+z_index = 100
+layout_mode = 0
+offset_left = 280.0
+offset_right = 380.0
+offset_bottom = 100.0
+scale = Vector2(0.902041, 0.902041)
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("11_xrptc")
 
 [connection signal="animation_finished" from="Room/ScreenTransition" to="Room" method="AnimationEnded"]
+[connection signal="on_hit" from="AxeKnight" to="Container/HP" method="LoseLife"]

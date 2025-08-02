@@ -10,7 +10,6 @@ class_name AxeKnight extends LegWalker
 @export var _slash_cast: CastAt
 @export var _slam_stun_timer: Timer
 @export var _slam_cast: ShapeCast2D
-@export var _max_hp: int = 3
 @export var _hurt_stun_timer: Timer
 @export var _invicibility_timer: Timer
 @export var _slash_timer: Timer
@@ -34,15 +33,15 @@ var temporary_speed: float = 0
 var input_mode_mouse: bool = true
 var look_direction: Vector2
 var dashing: bool
-var hp: int
+
+signal on_hit()
 
 func _ready() -> void:
-	hp = _max_hp
 	dashing = false
 	attacks = Attack.Ready
 	call_deferred("Dash", Vector2.DOWN)
 
-func OnHit(_direction: Vector2):
+func OnHit(_direction: Vector2, _melee: bool):
 	if !IsInvincible():
 		vertical_momentum = - _dash_jump_speed
 		temporary_speed = sign(_direction.x) * _dash_speed
@@ -50,7 +49,7 @@ func OnHit(_direction: Vector2):
 		_invicibility_timer.start()
 		_sprite.Blink()
 		_animator.TransitionTo(KnightAnimator.State.Hurt)
-		hp -= 1
+		on_hit.emit()
 
 func EndDash():
 	vertical_momentum = - _dash_end_jump
@@ -68,6 +67,18 @@ func SlamTimerTimeout():
 func StunTimerTimeout():
 	attacks = Attack.Ready
 	EndDash()
+
+func Clash(opponent: Vector2):
+	attacks = Attack.Charged
+	_slash_timer.start()
+	_hurt_stun_timer.start()
+	
+	var direction = opponent - global_position
+	vertical_momentum = - _dash_jump_speed
+	temporary_speed = sign(-direction.x) * _dash_speed
+	
+	_animator.TransitionTo(KnightAnimator.State.Slash)
+	_animator.SetDashDirection(direction)
 
 func TrailTimerTimeout():
 	if (attacks != Attack.Ready):
@@ -103,7 +114,7 @@ func Slam(_normal: Vector2):
 	for i in collisions:
 		var c = _slam_cast.get_collider(i)
 		if c != null:
-			c.call("OnHit", (c.global_position - self.global_position).normalized())
+			c.call("OnHit", (c.global_position - self.global_position).normalized(), true)
 			if c.is_class("RigidBody2D"):
 				ReflectAttack(c.global_position)
 				
@@ -114,7 +125,6 @@ func ReflectAttack(pos: Vector2):
 	spawn.global_position = pos
 	spawn.Shoot((_target.global_position - pos).normalized() * _reflect_speed, 0)
 
-	pass
 func AxeSwing():
 	_slash_timer.start()
 	_animator.TransitionTo(KnightAnimator.State.Slash)
@@ -125,7 +135,7 @@ func AxeSwing():
 	for i in collisions:
 		var c = _slash_cast.get_collider(i)
 		if c != null:
-			c.call("OnHit", _aiming._direction)
+			c.call("OnHit", _aiming._direction, true)
 			if c.is_class("RigidBody2D"):
 				ReflectAttack(c.global_position)
 
@@ -168,8 +178,8 @@ func ProcessAttack():
 
 		if (attacks == Attack.DashSpent):
 			attacks = Attack.BothSpent
-			AxeSwing()
 			EndDash()
+			AxeSwing()
 
 		elif (attacks == Attack.Ready):
 			Dash(_aiming._direction)

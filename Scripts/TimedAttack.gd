@@ -6,7 +6,7 @@ func Attack():
     var collisions = get_collision_count()
     for i in collisions:
         if get_collider(i) != null:
-            get_collider(i).call("OnHit", direction)
+            get_collider(i).call("OnHit", direction, false)
 
 func Expire():
     queue_free()
