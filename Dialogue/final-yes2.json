@@ -1,0 +1,22 @@
+[
+  {
+    "char": "K",
+    "text": "Yes, I'm ready this time!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "Alright, great.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Prepare yourself.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "I'm already prepared.",
+    "sprite": "Serious"
+  }
+]

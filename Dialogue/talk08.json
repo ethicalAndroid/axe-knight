@@ -1,0 +1,57 @@
+[
+  {
+    "char": "K",
+    "text": "Hey, what did you mean last time.",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "Well...",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "You're the Axe Knight, you don't use a sword. Heck, you barely have any armor.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "You can fly. You have a bright magic trail.",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "Out of all the knights I know of, you're the least traditional.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Most knights quit my time loops, or get de-motivated before finishing their quest.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "But...",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "You don't!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "Wha-",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Of course I wouldn't quit!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Exactly.",
+    "sprite": "Happy"
+  }
+]

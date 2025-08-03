@@ -1,0 +1,32 @@
+[
+  {
+    "char": "M",
+    "text": "Any progress?",
+    "sprite": "Normal"
+  },
+  {
+    "char": "K",
+    "text": "Oh yeah, I think I'm almost ready.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Any more questions?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Not really?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "I'll try to come up with one in the next loop!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "Okay.",
+    "sprite": "Yap2"
+  }
+]

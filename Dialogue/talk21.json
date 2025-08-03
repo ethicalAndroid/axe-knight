@@ -1,0 +1,17 @@
+[
+  {
+    "char": "M",
+    "text": "You got anything to say?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Nope, you?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "Nope.",
+    "sprite": "Normal"
+  }
+]

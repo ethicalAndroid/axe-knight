@@ -1,0 +1,72 @@
+[
+  {
+    "char": "K",
+    "text": "I'm doing this to save people!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "This war is killing tons of people!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Yes, of course. The reality is that we are in a battlefield.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "A general commands hundreds, maybe thousands of troops.",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "Winning this is incredibly important.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "But because you, at some level...",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Think of this as a game...",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "You can keep going, even when anyone else can't.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "...",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Maybe.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "I don't see it as a game.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "K",
+    "text": "This is serious business, lives are on the line!",
+    "sprite": "Normal"
+  },
+  {
+    "char": "K",
+    "text": "If I don't succeed, we're both dead, and so is the village behind us!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "Just because I don't always look like it, doesn't mean I'm not serious about it.",
+    "sprite": "Yap1"
+  }
+]

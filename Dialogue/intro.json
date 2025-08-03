@@ -1,162 +1,162 @@
 [
   {
-	"char": "M",
-	"text": "Okay, we're here. Are you ready?",
-	"sprite": "Normal"
+    "char": "M",
+    "text": "Okay, we're here. Are you ready?",
+    "sprite": "Normal"
   },
   {
-	"char": "K",
-	"text": "Absolutely!",
-	"sprite": "Happy"
+    "char": "K",
+    "text": "Absolutely!",
+    "sprite": "Happy"
   },
   {
-	"char": "M",
-	"text": "Can you repeat your mission?",
-	"sprite": "Serious"
+    "char": "M",
+    "text": "Can you repeat your mission?",
+    "sprite": "Serious"
   },
   {
-	"char": "K",
-	"text": "Of course!",
-	"sprite": "Happy"
+    "char": "K",
+    "text": "Of course!",
+    "sprite": "Happy"
   },
   {
-	"char": "K",
-	"text": "I'm the Axe Knight. I have to defeat the Dragon General with the help of your time loops.",
-	"sprite": "Yap1"
+    "char": "K",
+    "text": "I'm the Axe Knight. I have to defeat the Dragon General with the help of your time loops.",
+    "sprite": "Yap1"
   },
   {
-	"char": "M",
-	"text": "Do you remember how to fight?",
-	"sprite": "Serious"
+    "char": "M",
+    "text": "Do you remember how to fight?",
+    "sprite": "Serious"
   },
   {
-	"char": "K",
-	"text": "Sure!",
-	"sprite": "Happy"
+    "char": "K",
+    "text": "Sure!",
+    "sprite": "Happy"
   },
   {
-	"char": "K",
-	"text": "I can move with [A and D] or with (Left Stick or D-Pad).",
-	"sprite": "Yap1"
+    "char": "K",
+    "text": "I can move with [u][A and D][u] or with [u](Left Stick or D-Pad)[/u].",
+    "sprite": "Yap1"
   },
   {
-	"char": "K",
-	"text": "I can jump with [W or Space] or with (Left Trigger or Bumper).",
-	"sprite": "Yap2"
+    "char": "K",
+    "text": "I can jump with [u][W or Space][/u] or with [u](Left Trigger or Bumper)[/u].",
+    "sprite": "Yap2"
   },
   {
-	"char": "K",
-	"text": "I can attack with [Left Click] or with (Right Trigger or Bumper).",
-	"sprite": "Yap1"
+    "char": "K",
+    "text": "I can attack with [u][Left Click][/u] or with [u](Right Trigger or Bumper)[/u].",
+    "sprite": "Yap1"
   },
   {
-	"char": "K",
-	"text": "and I can aim with [Mouse] or with (Right Stick).",
-	"sprite": "Yap2"
+    "char": "K",
+    "text": "and I can aim with [u][Mouse][/u] or with [u](Right Stick)[/u].",
+    "sprite": "Yap2"
   },
   {
-	"char": "M",
-	"text": "Great.",
-	"sprite": "Happy"
+    "char": "M",
+    "text": "Great.",
+    "sprite": "Happy"
   },
   {
-	"char": "M",
-	"text": "Before we start, some things that I have to mention.",
-	"sprite": "Normal"
+    "char": "M",
+    "text": "Before we start, some things that I have to mention.",
+    "sprite": "Normal"
   },
   {
-	"char": "M",
-	"text": "The general has magic. Strong magic.",
-	"sprite": "Serious"
+    "char": "M",
+    "text": "The general has magic. Strong magic.",
+    "sprite": "Serious"
   },
   {
-	"char": "M",
-	"text": "I'm going to be a ways away, so that he won't be able to kill me during a loop.",
-	"sprite": "Yap1"
+    "char": "M",
+    "text": "I'm going to be a ways away, so that he won't be able to kill me during a loop.",
+    "sprite": "Yap1"
   },
   {
-	"char": "M",
-	"text": "Once you get there, you'll only have 40 seconds before the loop loops you back to the start.",
-	"sprite": "Normal"
+    "char": "M",
+    "text": "Once you get there, you'll only have 40 seconds before the loop loops you back to the start.",
+    "sprite": "Normal"
   },
   {
-	"char": "M",
-	"text": "Also, if you win or lose, you'll also loop back to the start.",
-	"sprite": "Yap1"
+    "char": "M",
+    "text": "Also, if you win or lose, you'll also loop back to the start.",
+    "sprite": "Yap1"
   },
   {
-	"char": "K",
-	"text": "Wait. Hold on.",
-	"sprite": "Confused"
+    "char": "K",
+    "text": "Wait. Hold on.",
+    "sprite": "Confused"
   },
   {
-	"char": "K",
-	"text": "If I always loop back, then how do I defeat him?",
-	"sprite": "Confused"
+    "char": "K",
+    "text": "If I always loop back, then how do I defeat him?",
+    "sprite": "Confused"
   },
   {
-	"char": "M",
-	"text": "That's where the tough part comes.",
-	"sprite": "Serious"
+    "char": "M",
+    "text": "That's where the tough part comes.",
+    "sprite": "Serious"
   },
   {
-	"char": "M",
-	"text": "You're not actually going to defeat him in a loop.",
-	"sprite": "Normal"
+    "char": "M",
+    "text": "You're not actually going to defeat him in a loop.",
+    "sprite": "Normal"
   },
   {
-	"char": "M",
-	"text": "The loops are for practice against the real deal.",
-	"sprite": "Normal"
+    "char": "M",
+    "text": "The loops are for practice against the real deal.",
+    "sprite": "Normal"
   },
   {
-	"char": "M",
-	"text": "Everything that you see inside the loops, will happen outside of the loops.",
-	"sprite": "Yap1"
+    "char": "M",
+    "text": "Everything that you see inside the loops, will happen outside of the loops.",
+    "sprite": "Yap1"
   },
   {
-	"char": "K",
-	"text": "So once I'm ready...",
-	"sprite": "Normal"
+    "char": "K",
+    "text": "So once I'm ready...",
+    "sprite": "Normal"
   },
   {
-	"char": "M",
-	"text": "Exactly! Once you're ready, I'll end the time loop and you have to fight him for real.",
-	"sprite": "Happy"
+    "char": "M",
+    "text": "Exactly! Once you're ready, I'll end the time loop and you have to fight him for real.",
+    "sprite": "Happy"
   },
   {
-	"char": "K",
-	"text": "Okay, okay, I think I get it.",
-	"sprite": "Happy"
+    "char": "K",
+    "text": "Okay, okay, I think I get it.",
+    "sprite": "Happy"
   },
   {
-	"char": "K",
-	"text": "I'll practice against the general in the time loops...",
-	"sprite": "Serious"
+    "char": "K",
+    "text": "I'll practice against the general in the time loops...",
+    "sprite": "Serious"
   },
   {
-	"char": "K",
-	"text": "Talk to you at the start of each loop...",
-	"sprite": "Yap1"
+    "char": "K",
+    "text": "Talk to you at the start of each loop...",
+    "sprite": "Yap1"
   },
   {
-	"char": "K",
-	"text": "And then tell you to end the loops once I'm ready!",
-	"sprite": "Happy"
+    "char": "K",
+    "text": "And then tell you to end the loops once I'm ready!",
+    "sprite": "Happy"
   },
   {
-	"char": "M",
-	"text": "Perfect!",
-	"sprite": "Happy"
+    "char": "M",
+    "text": "Perfect!",
+    "sprite": "Happy"
   },
   {
-	"char": "K",
-	"text": "Okay, start the loops!",
-	"sprite": "Serious"
+    "char": "K",
+    "text": "Okay, start the loops!",
+    "sprite": "Serious"
   },
   {
-	"char": "M",
-	"text": "Already on it.",
-	"sprite": "Serious"
+    "char": "M",
+    "text": "Already on it.",
+    "sprite": "Serious"
   }
 ]

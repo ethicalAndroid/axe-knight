@@ -1,0 +1,57 @@
+[
+  {
+    "char": "K",
+    "text": "This guy is still soooo tough.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Are you dashing?",
+    "sprite": "Normal"
+  },
+  {
+    "char": "K",
+    "text": "Well, yeah.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Have you tried dashing downwards?",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "K",
+    "text": "Uhh, you mean the thing I do at the start of every loop?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "No, no, not that.",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "I mean dashing at an angle to the ground.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "If you do that, the angle should allow you to dash [u]across[/u] the ground.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "M",
+    "text": "If you [u]jump[/u] while doing that, you should be able to [u]extend your dash[/u].",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "What? For real?",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "It's just an idea.",
+    "sprite": "Normal"
+  }
+]

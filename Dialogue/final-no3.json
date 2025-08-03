@@ -1,0 +1,22 @@
+[
+  {
+    "char": "M",
+    "text": "No?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Nope!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "You only have one shot!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "Yep!",
+    "sprite": "Happy"
+  }
+]

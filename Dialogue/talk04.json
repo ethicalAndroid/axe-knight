@@ -1,0 +1,17 @@
+[
+  {
+    "char": "K",
+    "text": "Okay, what's with his laser beam attack.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "K",
+    "text": "It looks like he aims it, and then fires?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "Yeah that's probably it.",
+    "sprite": "Yap2"
+  }
+]

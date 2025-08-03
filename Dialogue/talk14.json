@@ -1,0 +1,22 @@
+[
+  {
+    "char": "M",
+    "text": "So, are you ready?",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "No, not yet!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "I'd tell you to end the loop if I was!",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "Well, I'll be here.",
+    "sprite": "Normal"
+  }
+]

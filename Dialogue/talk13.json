@@ -1,0 +1,62 @@
+[
+  {
+    "char": "K",
+    "text": "By the way, I know that knights and mages don't normally give away their names...",
+    "sprite": "Normal"
+  },
+  {
+    "char": "K",
+    "text": "But I want to give you a proper greeting!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "Huh? Why now?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "You told me that I'm not like other knights.",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "K",
+    "text": "Now I'm telling you that you're not like other mages.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "You teamed up with me, tailored these loops for me, and even said sorry!",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "K",
+    "text": "You're not like other mages.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "You're way better! That's why I want to give you a proper greeting!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "...",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Well, I'm flattered.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "My name is Aegis, the Loop Mage. A pleasure to meet you.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "My name is Daffodil, the Axe Knight. Nice to meetcha!",
+    "sprite": "Happy"
+  }
+]

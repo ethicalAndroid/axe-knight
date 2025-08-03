@@ -11,13 +11,15 @@ enum TalkSprite {
 
 var i: int = 0
 var block: DBlock
+var loading: bool
 
 signal done()
 
 func AnimationEnded(animation: StringName):
 	if animation == "intro":
+		loading = false
 		Next()
-	else:
+	elif animation == "outro":
 		done.emit()
 
 func Finish():
@@ -42,6 +44,8 @@ func StartJson(json: JSON):
 
 
 func StartBlock(given_block: DBlock):
+	i = 0
+	loading = true
 	block = given_block
 	mage.ShowSprite(TalkSprite.Normal)
 	knight.ShowSprite(TalkSprite.Normal)
@@ -64,5 +68,5 @@ func Next():
 	i += 1
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Continue"):
+	if !loading && Input.is_action_just_pressed("Continue"):
 		Next()

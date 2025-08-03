@@ -208,7 +208,7 @@ script = ExtResource("4_7ptc5")
 text = NodePath("Control/RichTextLabel")
 mage = NodePath("Mage")
 knight = NodePath("Knight")
-transition = NodePath("AnimationPlayer")
+transition = NodePath("DialogueTransition")
 
 [node name="Control" type="Control" parent="Control"]
 layout_mode = 1
@@ -301,7 +301,7 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/Mage/RightBounce"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+[node name="DialogueTransition" type="AnimationPlayer" parent="Control"]
 libraries = {
 "": SubResource("AnimationLibrary_mn8v1")
 }
@@ -430,9 +430,13 @@ text = "[center]Yes![/center]"
 [connection signal="loop_menu" from="." to="Choices/Loop" method="Ready"]
 [connection signal="animation_finished" from="ScreenTransition" to="." method="AnimationEnded"]
 [connection signal="done" from="Control" to="." method="DDialogueEnded"]
+[connection signal="animation_finished" from="Control/Knight/LeftBounce/AnimationPlayer" to="Control" method="AnimationEnded"]
+[connection signal="animation_finished" from="Control/DialogueTransition" to="Control" method="AnimationEnded"]
+[connection signal="choice_made" from="Choices/Loop/pivot/Talk" to="." method="Talk"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Talk" to="Choices/Loop" method="Choose"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Loop!" to="." method="StartBattle"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Loop!" to="Choices/Loop" method="Choose"]
+[connection signal="choice_made" from="Choices/Loop/pivot/Finish It" to="." method="FinalLoopAsk"]
 [connection signal="choice_made" from="Choices/Loop/pivot/Finish It" to="Choices/Loop" method="Choose"]
 [connection signal="choice_made" from="Choices/Final/pivot/No" to="." method="FinalLoopNo"]
 [connection signal="choice_made" from="Choices/Final/pivot/No" to="Choices/Final" method="Choose"]

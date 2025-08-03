@@ -1,0 +1,67 @@
+[
+  {
+    "char": "K",
+    "text": "What kind of knight would quit before finishing a quest like this?",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "That makes me sick!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Not everyone has the stomach for this much magic.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Not to mention, how many times have you looped?",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "K",
+    "text": "Lost count.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "M",
+    "text": "Try to think back to your early loops.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Did you DIE?",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "Uh, well...",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Unfortunately, my time loops are just too taxing on the mind.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "In this war, my time loops are only deployed when people have to die in them.",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "Nobody wants to die.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "And nobody wants to die fifteen, twenty, a hundred times.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "...",
+    "sprite": "Serious"
+  }
+]

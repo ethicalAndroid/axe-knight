@@ -1,0 +1,52 @@
+[
+  {
+    "char": "M",
+    "text": "You haven't brought up the sword yet.",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Oh, the sword!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "It makes a great sound when I hit it with my axe!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Okay, but make sure you are able to hit it.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "If you don't have an attack ready and he hits you, you'll only get hurt.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "Uhh, how do I know if I have an attack ready?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "If your magic trail is bright.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "Oh!",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "The Dragon General's trail is bright green, and mine is bright red.",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "Interesting...",
+    "sprite": "Yap1"
+  }
+]

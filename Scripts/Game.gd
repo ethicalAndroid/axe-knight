@@ -3,7 +3,7 @@ class_name Game extends Node2D
 @export var transition: AnimationPlayer
 @export var battle_scene: PackedScene
 @export var dialogue: DDialogue
-@export var d_blocks: Array[JSON]
+@export var talk_blocks: Array[JSON]
 @export var intro: JSON
 @export var final_loop_ask: Array[JSON]
 @export var final_loop_yes: Array[JSON]
@@ -11,14 +11,16 @@ class_name Game extends Node2D
 
 
 signal loop_menu()
-
 signal final_menu()
+signal final_lost()
+signal final_won()
 
 
 var final_loop = false
 var battle: PauseGame
 var d_type: DDialogueType
 var final_loop_asked: int = 0
+var talks = 0
 
 enum DDialogueType {
 	NextLoop, FinalLoopQuestion
@@ -38,6 +40,11 @@ func FinalLoopNo():
 func FinalLoopAsk():
 	d_type = DDialogueType.FinalLoopQuestion
 	dialogue.StartJson(final_loop_ask[final_loop_asked])
+
+func Talk():
+	d_type = DDialogueType.NextLoop
+	dialogue.StartJson(talk_blocks[talks])
+	talks = min(talks + 1, talk_blocks.size() - 1)
 
 func _ready() -> void:
 	dialogue.StartJson(intro)
@@ -65,9 +72,15 @@ func AnimationEnded(animation: StringName):
 		loop_menu.emit()
 
 func OnWin():
-	print("win")
-	transition.queue("screen_close")
+	if final_loop:
+		battle.Remove()
+		final_won.emit()
+	else:
+		transition.queue("screen_close")
 
 func OnLose():
-	print("lose")
-	transition.queue("screen_close")
+	if final_loop:
+		battle.Remove()
+		final_lost.emit()
+	else:
+		transition.queue("screen_close")

@@ -1,0 +1,57 @@
+[
+  {
+    "char": "M",
+    "text": "How did you develop magic?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Uh, to chop wood?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "No, that was a bad question.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Carry on.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "M",
+    "text": "Wait, no, stop.",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "You developed your magic to chop wood better?",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "Yeah!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "I've never heard of anyone doing that.",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "Magic is so standardized nowadays, only people who want to be mages develop their magic.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "M",
+    "text": "You are fascinating!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "Well, now I'm flattered.",
+    "sprite": "Happy"
+  }
+]

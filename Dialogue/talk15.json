@@ -1,0 +1,22 @@
+[
+  {
+    "char": "M",
+    "text": "Say, why did you become a knight?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Uh, to protect people?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "No, that was a bad question.",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Carry on.",
+    "sprite": "Yap2"
+  }
+]

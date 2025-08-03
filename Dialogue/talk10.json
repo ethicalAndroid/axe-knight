@@ -1,0 +1,82 @@
+[
+  {
+    "char": "K",
+    "text": "So what, I'm different?",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Yes.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "In what way?",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "Seriously, because I don't get it.",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "Can't you tell?",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "M",
+    "text": "You don't fear death.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "You don't even feel death!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "Wait...",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "I mean, I don't like losing...",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "K",
+    "text": "But, I'm going to win eventually...",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "Once I have enough practice...",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "See, that kind of mindset!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "That determination, that attitude.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "In the right environment, something this scary...",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "Is just a game to you!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "...",
+    "sprite": "Serious"
+  }
+]

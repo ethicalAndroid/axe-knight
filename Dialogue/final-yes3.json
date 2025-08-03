@@ -1,0 +1,52 @@
+[
+  {
+    "char": "M",
+    "text": "No?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "Yes, yes! Yes!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "I'm actually ready this time!",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "Okay!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "Prepare yourself.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "K",
+    "text": "I'm prepared!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "M",
+    "text": "...",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "...",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "M",
+    "text": "Are you sure?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "K",
+    "text": "YES!",
+    "sprite": "Happy"
+  }
+]

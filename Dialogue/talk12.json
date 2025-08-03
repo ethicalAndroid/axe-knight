@@ -1,0 +1,22 @@
+[
+  {
+    "char": "M",
+    "text": "Look, I'm sorry for saying that you treat this like a game.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "It's no big deal!",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "At least you said sorry!",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "M",
+    "text": "...",
+    "sprite": "Serious"
+  }
+]

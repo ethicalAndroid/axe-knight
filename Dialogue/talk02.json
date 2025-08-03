@@ -1,0 +1,32 @@
+[
+  {
+    "char": "K",
+    "text": "Hey, any tips?",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "Hmmm...",
+    "sprite": "Confused"
+  },
+  {
+    "char": "M",
+    "text": "Well, his attacks are mage of magic.",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "There are probably attacks that you can attack, and reflect back at him.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "K",
+    "text": "Reflecting!?",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "Hold that thought! I gotta try that!",
+    "sprite": "Serious"
+  }
+]

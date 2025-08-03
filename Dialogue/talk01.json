@@ -1,0 +1,22 @@
+[
+  {
+    "char": "K",
+    "text": "Wow, he sure is tough!",
+    "sprite": "Normal"
+  },
+  {
+    "char": "M",
+    "text": "Of course.",
+    "sprite": "Serious"
+  },
+  {
+    "char": "M",
+    "text": "That's why you're fighting him.",
+    "sprite": "Happy"
+  },
+  {
+    "char": "K",
+    "text": "Yeah, yeah.",
+    "sprite": "Yap1"
+  }
+]
