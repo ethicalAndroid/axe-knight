@@ -5,6 +5,9 @@ class_name LifeCount extends Control
 
 @export var life_sprites: Array[TextureRect]
 
+@export var hurt: AudioStream
+@export var death: AudioStream
+
 var i: int = 0
 
 signal on_death()
@@ -20,3 +23,6 @@ func LoseLife():
 	i += 1
 	if (i >= life_sprites.size()):
 		on_death.emit()
+		Audio.Play(death)
+	else:
+		Audio.Play(hurt)

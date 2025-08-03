@@ -26,6 +26,11 @@ class_name AxeKnight extends LegWalker
 @export var _shine_both: PackedScene
 @export var _shockwave: PackedScene
 
+@export var _sfx_miss: AudioStream
+@export var _sfx_hit: AudioStream
+@export var _sfx_slam: AudioStream
+@export var _sfx_dash: AudioStream
+
 enum Attack {
 	Ready, DashSpent, BothSpent, Charged
 }
@@ -83,6 +88,7 @@ func Clash(opponent: Vector2):
 	
 	_animator.TransitionTo(KnightAnimator.State.Slash)
 	_animator.SetDashDirection(direction)
+	Audio.Play(_sfx_hit)
 
 func TrailTimerTimeout():
 	if (attacks != Attack.Ready):
@@ -102,8 +108,12 @@ func SlashTimerTimeout():
 	else:
 		_animator.TransitionTo(KnightAnimator.State.Airborne)
 
+func Play(stream: AudioStream):
+	Audio.Play(stream)
+
 func Slam(_normal: Vector2):
 	EndDash()
+	Play(_sfx_slam)
 	var effect: Node2D = _shockwave.instantiate()
 	get_node(Fading.ROOT_PARENT).add_child(effect)
 	effect.global_position = global_position
@@ -134,8 +144,6 @@ func AxeSwing():
 	_animator.SetDashDirection(_aiming._direction)
 	var collisions = _slash_cast.get_collision_count()
 	var clash = false
-	if (collisions > 0):
-		attacks = Attack.Charged
 	for i in collisions:
 		var c = _slash_cast.get_collider(i)
 		if c != null:
@@ -144,6 +152,11 @@ func AxeSwing():
 			elif c.is_class("CharacterBody2D") && c.IsDashing():
 				clash = true
 			c.call("OnHit", _aiming._direction, true)
+	if (collisions > 0):
+		attacks = Attack.Charged
+		Play(_sfx_hit)
+	else:
+		Play(_sfx_miss)
 	if clash:
 		var effect: Node2D = _shine_both.instantiate()
 		get_node(Fading.ROOT_PARENT).add_child(effect)
@@ -154,6 +167,7 @@ func AxeSwing():
 		get_node(Fading.ROOT_PARENT).add_child(effect)
 		effect.global_position = global_position + _slash_cast.target_position
 		effect.rotation = Vector2.RIGHT.angle_to(_aiming._direction)
+
 # INPUT
 func _process(_delta: float) -> void:
 	GetInput()
@@ -200,6 +214,7 @@ func ProcessAttack():
 			Dash(_aiming._direction)
 
 func Dash(direction: Vector2):
+	Play(_sfx_dash)
 	attacks = Attack.DashSpent
 	dash_direction = direction
 	_bump_collision.Aim(dash_direction)
@@ -253,6 +268,7 @@ func DashMovement(delta: float):
 		_animator.TransitionTo(KnightAnimator.State.Dash)
 
 	if TryJump():
+		Audio.Play(_sfx_dash)
 		_dash_timer.start()
 		temporary_speed = (dash_direction * _dash_speed).x
 		vertical_momentum = - _dash_jump_speed

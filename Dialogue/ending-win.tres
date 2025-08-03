@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="DBlock" load_steps=11 format=3 uid="uid://bsxeigy6bfa2d"]
+
+[ext_resource type="Script" path="res://Scripts/DFrame.gd" id="1_ghq0m"]
+[ext_resource type="Script" path="res://Scripts/DBlock.gd" id="2_sws1s"]
+
+[sub_resource type="Resource" id="Resource_56d4f"]
+script = ExtResource("1_ghq0m")
+sprite = 1
+is_knight = false
+text = "You did it!"
+
+[sub_resource type="Resource" id="Resource_7huno"]
+script = ExtResource("1_ghq0m")
+sprite = 1
+is_knight = true
+text = "I did it!"
+
+[sub_resource type="Resource" id="Resource_oh7up"]
+script = ExtResource("1_ghq0m")
+sprite = 5
+is_knight = true
+text = "Thank the lands! I almost died for real!"
+
+[sub_resource type="Resource" id="Resource_jf826"]
+script = ExtResource("1_ghq0m")
+sprite = 4
+is_knight = false
+text = "It was getting pretty tight, he almost aimed his laser at me!"
+
+[sub_resource type="Resource" id="Resource_5f0qu"]
+script = ExtResource("1_ghq0m")
+sprite = 5
+is_knight = true
+text = "I'm so glad it's over."
+
+[sub_resource type="Resource" id="Resource_70h1c"]
+script = ExtResource("1_ghq0m")
+sprite = 4
+is_knight = true
+text = "Is there anything else that we need to do here?"
+
+[sub_resource type="Resource" id="Resource_6yuuq"]
+script = ExtResource("1_ghq0m")
+sprite = 1
+is_knight = false
+text = "Nope, we're good to go. The village is saved!"
+
+[sub_resource type="Resource" id="Resource_cer1p"]
+script = ExtResource("1_ghq0m")
+sprite = 1
+is_knight = true
+text = "Alright!"
+
+[resource]
+script = ExtResource("2_sws1s")
+mage_start = 0
+knight_start = 0
+frames = Array[ExtResource("1_ghq0m")]([SubResource("Resource_56d4f"), SubResource("Resource_7huno"), SubResource("Resource_oh7up"), SubResource("Resource_jf826"), SubResource("Resource_5f0qu"), SubResource("Resource_70h1c"), SubResource("Resource_6yuuq"), SubResource("Resource_cer1p")])

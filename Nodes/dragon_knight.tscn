@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://sdu2w3jji1sq"]
+[gd_scene load_steps=51 format=3 uid="uid://sdu2w3jji1sq"]
 
 [ext_resource type="Script" path="res://Scripts/DragonKnight.gd" id="1_eue5p"]
 [ext_resource type="Script" path="res://Scripts/ShotSpawner.gd" id="2_35e6n"]
@@ -11,11 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://bfhl6o2g4e8lp" path="res://Nodes/summon_axe.tscn" id="3_obi0n"]
 [ext_resource type="PackedScene" uid="uid://b4m210e4cvgp6" path="res://Nodes/summon_shot.tscn" id="3_ssgex"]
 [ext_resource type="PackedScene" uid="uid://0541jxm7oc6n" path="res://Nodes/trail_green.tscn" id="4_1ogfr"]
+[ext_resource type="AudioStream" uid="uid://ceeoi12pddehk" path="res://Audio/d-dash1.wav" id="5_kxubf"]
+[ext_resource type="AudioStream" uid="uid://dx1qhlmd4soxe" path="res://Audio/d-dash2.wav" id="6_81yx4"]
 [ext_resource type="Script" path="res://Scripts/LaserBlaster.gd" id="6_ygsgt"]
 [ext_resource type="PackedScene" uid="uid://bqh2smxu24lu" path="res://Nodes/laser_beam.tscn" id="7_58upb"]
 [ext_resource type="Texture2D" uid="uid://dpuu0uweg2dw2" path="res://Sprites/d-head1.png" id="7_e38es"]
+[ext_resource type="AudioStream" uid="uid://bc385f2vxv16d" path="res://Audio/d-slash.wav" id="7_sni80"]
 [ext_resource type="Script" path="res://Scripts/DragonAnimator.gd" id="8_tsn2a"]
+[ext_resource type="AudioStream" uid="uid://b6iseqmoplcbu" path="res://Audio/d-stomp.wav" id="8_tw64x"]
+[ext_resource type="AudioStream" uid="uid://cwhquueewpguf" path="res://Audio/d-summon1.wav" id="9_8qk8w"]
 [ext_resource type="Texture2D" uid="uid://dq4l3qknuvm3m" path="res://Sprites/d-stance1.png" id="9_ki7wj"]
+[ext_resource type="AudioStream" uid="uid://1r2fnnv1mu5k" path="res://Audio/d-summon2.wav" id="10_0amok"]
 [ext_resource type="Texture2D" uid="uid://bjgrv7loeah48" path="res://Sprites/d-stomp1.png" id="10_4id8c"]
 [ext_resource type="Texture2D" uid="uid://cq0068imd7dhv" path="res://Sprites/d-stomp2.png" id="11_73i3p"]
 [ext_resource type="Texture2D" uid="uid://dy4jkbwn3h5kw" path="res://Sprites/d-head2.png" id="12_ckky8"]
@@ -27,34 +33,9 @@
 [ext_resource type="Texture2D" uid="uid://kpm4mtpwbvdc" path="res://Sprites/d-axe1.png" id="16_rnybd"]
 [ext_resource type="Texture2D" uid="uid://co6acsef4hxr8" path="res://Sprites/d-axe2.png" id="17_vu0jv"]
 [ext_resource type="Texture2D" uid="uid://dhyxotfv65phs" path="res://Sprites/d-axe3.png" id="18_mht1j"]
-
-[sub_resource type="Animation" id="Animation_2cqin"]
-resource_name = "stomp"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/AnimBody/Flip/Body:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("10_4id8c"), ExtResource("11_73i3p")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
-"transitions": PackedFloat32Array(0.5, 0.5, 2, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 0.8), Vector2(1, 1)]
-}
+[ext_resource type="AudioStream" uid="uid://4bgutkea8d6w" path="res://Audio/d-blast1.wav" id="30_xja6k"]
+[ext_resource type="AudioStream" uid="uid://dxvtn6lg7scn4" path="res://Audio/d-blast2.wav" id="31_xsofy"]
+[ext_resource type="AudioStream" uid="uid://c8xeuej0ylmgb" path="res://Audio/d-blast3.wav" id="32_2usdk"]
 
 [sub_resource type="Animation" id="Animation_j7ic7"]
 length = 0.001
@@ -95,63 +76,6 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_m6ag7"]
-resource_name = "dash"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/AnimBody/Flip/Body:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("13_vw8b5")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/AnimBody/Flip/Body:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-1, 0), Vector2(1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6il5x"]
-resource_name = "slash"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/AnimBody/Flip/Body:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("14_l5711"), ExtResource("15_cra5x")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.4),
-"transitions": PackedFloat32Array(0.5, 0.5, 1),
-"update": 0,
-"values": [Vector2(1, 0.9), Vector2(1, 1.2), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_66u5e"]
 resource_name = "axe"
 length = 0.5
@@ -180,9 +104,10 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1.2), Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1), Vector2(1, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_3emer"]
-resource_name = "javelin"
-length = 0.5
+[sub_resource type="Animation" id="Animation_m6ag7"]
+resource_name = "dash"
+length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -190,22 +115,22 @@ tracks/0/path = NodePath("Pivot/AnimBody/Flip/Body:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("16_rnybd"), ExtResource("17_vu0jv"), ExtResource("18_mht1j")]
+"values": [ExtResource("13_vw8b5")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot:scale")
+tracks/1/path = NodePath("Pivot/AnimBody/Flip/Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.433333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1.2), Vector2(1, 1.1), Vector2(1, 1)]
+"values": [Vector2(-1, 0), Vector2(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ovydv"]
@@ -236,6 +161,90 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1.05), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_3emer"]
+resource_name = "javelin"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/AnimBody/Flip/Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("16_rnybd"), ExtResource("17_vu0jv"), ExtResource("18_mht1j")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1.2), Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6il5x"]
+resource_name = "slash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/AnimBody/Flip/Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("14_l5711"), ExtResource("15_cra5x")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(1, 0.9), Vector2(1, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2cqin"]
+resource_name = "stomp"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/AnimBody/Flip/Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("10_4id8c"), ExtResource("11_73i3p")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 2, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 0.8), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qapir"]
 _data = {
 "RESET": SubResource("Animation_j7ic7"),
@@ -245,6 +254,33 @@ _data = {
 "javelin": SubResource("Animation_3emer"),
 "slash": SubResource("Animation_6il5x"),
 "stomp": SubResource("Animation_2cqin")
+}
+
+[sub_resource type="Animation" id="Animation_itmhh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Node2D/HeadSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_e38es")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ngjhy"]
@@ -276,8 +312,8 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_itmhh"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_lrp1e"]
+resource_name = "blast"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -285,10 +321,10 @@ tracks/0/path = NodePath("Pivot/Node2D/HeadSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("7_e38es")]
+"values": [ExtResource("15_yrh0x"), ExtResource("7_e38es")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -297,27 +333,10 @@ tracks/1/path = NodePath("Pivot/Node2D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.366667, 0.466667, 1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 2, 2, 0.5),
 "update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_50a70"]
-resource_name = "idle"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Node2D/HeadSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_e38es")]
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1.12, 1.12), Vector2(1.16, 1.16), Vector2(1.05, 1.05), Vector2(1.07, 1.07), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4asxi"]
@@ -349,8 +368,10 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1), Vector2(1.05, 1.05), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_lrp1e"]
-resource_name = "blast"
+[sub_resource type="Animation" id="Animation_50a70"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -358,22 +379,10 @@ tracks/0/path = NodePath("Pivot/Node2D/HeadSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("15_yrh0x"), ExtResource("7_e38es")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Node2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.366667, 0.466667, 1),
-"transitions": PackedFloat32Array(0.5, 2, 0.5, 2, 2, 2, 0.5),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1.12, 1.12), Vector2(1.16, 1.16), Vector2(1.05, 1.05), Vector2(1.07, 1.07), Vector2(1, 1)]
+"values": [ExtResource("7_e38es")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5lqin"]
@@ -395,13 +404,19 @@ _laser = NodePath("Pivot/AnimBody/LaserHead")
 _shot = NodePath("ShotSpawner")
 _tremor = NodePath("TremorSlam")
 _dash_speed = 1152.0
-_attack_timers = [NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast"), NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast"), NodePath("AttackTimers/Fast")]
-_attack_list = Array[int]([0, 1, 3, 2, 4, 1, 3, 4, 2, 4, 0, 3, 2, 0, 1, 3, 4, 1, 0, 4])
+_attack_timers = [NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Fast"), NodePath("AttackTimers/Slow"), NodePath("AttackTimers/Slow"), NodePath("AttackTimers/VeryShort")]
+_attack_list = Array[int]([0, 1, 3, 2, 4, 1, 0, 3, 4, 2, 4, 0, 3, 2, 1, 3, 0, 4, 1, 4])
 _dash_attack = NodePath("DashAttack")
 _shine_both = ExtResource("2_sdyf4")
 _shine_d = ExtResource("3_humo1")
 _trail = ExtResource("4_1ogfr")
 _sprites = [NodePath("Pivot/AnimBody/Flip/Body"), NodePath("Pivot/AnimBody/LaserHead/Pivot/Node2D/HeadSprite")]
+_sfx_dash_point = ExtResource("5_kxubf")
+_sfx_dash_player = ExtResource("6_81yx4")
+_sfx_slash = ExtResource("7_sni80")
+_sfx_stomp = ExtResource("8_tw64x")
+_sfx_axe = ExtResource("9_8qk8w")
+_sfx_javelin = ExtResource("10_0amok")
 
 [node name="DashAttack" type="ShapeCast2D" parent="."]
 shape = ExtResource("2_fcstp")
@@ -440,12 +455,15 @@ flip = NodePath("../Pivot/AnimBody/Flip")
 
 [node name="AttackTimers" type="Node" parent="."]
 
+[node name="VeryShort" type="Timer" parent="AttackTimers"]
+one_shot = true
+
 [node name="Fast" type="Timer" parent="AttackTimers"]
-wait_time = 0.9
+wait_time = 1.2
 one_shot = true
 
 [node name="Slow" type="Timer" parent="AttackTimers"]
-wait_time = 1.3
+wait_time = 1.5
 one_shot = true
 
 [node name="Trail" type="Timer" parent="."]
@@ -499,6 +517,9 @@ spend_timer = NodePath("Spent")
 beam = ExtResource("7_58upb")
 danger = NodePath("DangerLine")
 animator = NodePath("AnimationPlayer")
+sfx_aim = ExtResource("30_xja6k")
+sfx_charge = ExtResource("31_xsofy")
+sfx_blast = ExtResource("32_2usdk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/AnimBody/LaserHead"]
 libraries = {
@@ -535,6 +556,7 @@ one_shot = true
 
 [connection signal="timeout" from="TremorSlam/Timer" to="TremorSlam" method="NextTremor"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="AnimationEnded"]
+[connection signal="timeout" from="AttackTimers/VeryShort" to="." method="NextAttack"]
 [connection signal="timeout" from="AttackTimers/Fast" to="." method="NextAttack"]
 [connection signal="timeout" from="AttackTimers/Slow" to="." method="NextAttack"]
 [connection signal="timeout" from="Trail" to="." method="OnTrailTimeout"]

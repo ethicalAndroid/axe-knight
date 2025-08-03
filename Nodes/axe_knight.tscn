@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://co7b2f7gh5i1g"]
+[gd_scene load_steps=47 format=3 uid="uid://co7b2f7gh5i1g"]
 
 [ext_resource type="Script" path="res://Scripts/AxeKnight.gd" id="1_8q12i"]
 [ext_resource type="Shape2D" uid="uid://saihr05rsenh" path="res://Shapes/player_shape.tres" id="2_a36ui"]
@@ -11,13 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://cjjh73wb2si30" path="res://Nodes/k_shine.tscn" id="6_5xnok"]
 [ext_resource type="Shape2D" uid="uid://qauq24gmkhoj" path="res://Shapes/slash.tres" id="6_mbwxb"]
 [ext_resource type="PackedScene" uid="uid://dpgtll4rhvk2i" path="res://Nodes/both_shine.tscn" id="7_pa0oe"]
+[ext_resource type="AudioStream" uid="uid://3dr0qo7cpld6" path="res://Audio/k-slash1.wav" id="8_esgeb"]
 [ext_resource type="PackedScene" uid="uid://cx5md038dtmwy" path="res://Nodes/k_shockwave.tscn" id="8_pbrgn"]
 [ext_resource type="Shape2D" uid="uid://c5avdiprk12bh" path="res://Shapes/slam.tres" id="8_sx560"]
+[ext_resource type="AudioStream" uid="uid://d15vtpy2ar150" path="res://Audio/k-slash2.wav" id="9_66y08"]
 [ext_resource type="Texture2D" uid="uid://bocq7ctjcxg6k" path="res://Sprites/k-idle.png" id="9_viiqw"]
 [ext_resource type="Texture2D" uid="uid://ureqvts3j478" path="res://Sprites/k-run1.png" id="9_whoha"]
 [ext_resource type="Texture2D" uid="uid://cgkrbpc0s2uha" path="res://Sprites/k-run2.png" id="10_3eoyy"]
+[ext_resource type="AudioStream" uid="uid://bfxo5q8fw33cu" path="res://Audio/k-slam.wav" id="10_jmakk"]
 [ext_resource type="Script" path="res://Scripts/KnightAnimator.gd" id="11_0qkeg"]
 [ext_resource type="Texture2D" uid="uid://cpon2sgc2svnu" path="res://Sprites/k-jump1.png" id="11_aodbv"]
+[ext_resource type="AudioStream" uid="uid://5wangescuw22" path="res://Audio/k-dash.wav" id="11_ghnta"]
 [ext_resource type="Texture2D" uid="uid://dj0g7tc64r7ag" path="res://Sprites/k-jump2.png" id="12_iydka"]
 [ext_resource type="Texture2D" uid="uid://cod73vbj7x1g4" path="res://Sprites/k-jump3.png" id="13_h3c6l"]
 [ext_resource type="Texture2D" uid="uid://do831gtrb5dmg" path="res://Sprites/k-dash.png" id="15_j21ak"]
@@ -345,6 +349,10 @@ _gradient_spent = ExtResource("5_osat1")
 _shine_k = ExtResource("6_5xnok")
 _shine_both = ExtResource("7_pa0oe")
 _shockwave = ExtResource("8_pbrgn")
+_sfx_miss = ExtResource("8_esgeb")
+_sfx_hit = ExtResource("9_66y08")
+_sfx_slam = ExtResource("10_jmakk")
+_sfx_dash = ExtResource("11_ghnta")
 _animator = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

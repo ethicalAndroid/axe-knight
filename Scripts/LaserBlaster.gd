@@ -10,6 +10,10 @@ class_name LaserBlaster extends Node2D
 @export var danger: Line2D
 @export var animator: AnimationPlayer
 
+@export var sfx_aim: AudioStream
+@export var sfx_charge: AudioStream
+@export var sfx_blast: AudioStream
+
 var target: Node2D
 var direction: Vector2
 var state: State = State.Idle
@@ -29,17 +33,20 @@ func StartAiming():
 	state = State.Aiming
 	animator.stop()
 	animator.queue("aim")
+	Audio.Play(sfx_aim)
 
 func StartCharging():
 	charge_timer.start()
 	state = State.Charging
 	animator.stop()
 	animator.queue("charge")
+	Audio.Play(sfx_charge)
 
 func FinishCharging():
 	spend_timer.start()
 	state = State.Spent
 
+	Audio.Play(sfx_blast)
 	animator.stop()
 	animator.queue("blast")
 

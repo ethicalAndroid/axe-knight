@@ -1,92 +1,92 @@
 [
-  {
-    "char": "K",
-    "text": "So...",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "K",
-    "text": "Lemme recap what I know so far.",
-    "sprite": "Normal"
-  },
-  {
-    "char": "K",
-    "text": "The Dragon General can take exactly 20 attacks, while I can only exactly 3.",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "K",
-    "text": "I have three attacks, a ground/wall-slam, an axe attack, and a projectile reflect.",
-    "sprite": "Yap2"
-  },
-  {
-    "char": "M",
-    "text": "Good so far.",
-    "sprite": "Happy"
-  },
-  {
-    "char": "K",
-    "text": "He has five attacks.",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "K",
-    "text": "Summoning 3 axes, summoning 1 javelin...",
-    "sprite": "Yap2"
-  },
-  {
-    "char": "K",
-    "text": "Shooting a laser beam, creating an earth tremor...",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "K",
-    "text": "And dashing with a sword!",
-    "sprite": "Serious"
-  },
-  {
-    "char": "M",
-    "text": "Wow, that matches up exactly with what I gleaned using magic.",
-    "sprite": "Normal"
-  },
-  {
-    "char": "K",
-    "text": "Wait, you knew all this already?",
-    "sprite": "Confused"
-  },
-  {
-    "char": "K",
-    "text": "Why didn't you tell me at the start!",
-    "sprite": "Serious"
-  },
-  {
-    "char": "M",
-    "text": "Just hold on.",
-    "sprite": "Serious"
-  },
-  {
-    "char": "M",
-    "text": "It's better you learn from the real thing. That's why we're using my loops.",
-    "sprite": "Yap2"
-  },
-  {
-    "char": "M",
-    "text": "You didn't get paired up with the Info Mage, you got paired up with me, the Loop Mage.",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "K",
-    "text": "...",
-    "sprite": "Serious"
-  },
-  {
-    "char": "M",
-    "text": "And besides, we're probably a better fit for each other anyways.",
-    "sprite": "Normal"
-  },
-  {
-    "char": "K",
-    "text": "?",
-    "sprite": "Confused"
-  }
+	{
+		"char": "K",
+		"text": "So...",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "K",
+		"text": "Lemme recap what I know so far.",
+		"sprite": "Normal"
+	},
+	{
+		"char": "K",
+		"text": "The Dragon General can take exactly 20 attacks, while I can only exactly 3.",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "K",
+		"text": "I have three attacks, a ground/wall-slam, an axe attack, and a projectile reflect.",
+		"sprite": "Yap2"
+	},
+	{
+		"char": "M",
+		"text": "Good so far.",
+		"sprite": "Happy"
+	},
+	{
+		"char": "K",
+		"text": "He has five attacks.",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "K",
+		"text": "Summoning 3 axes, summoning 1 javelin...",
+		"sprite": "Yap2"
+	},
+	{
+		"char": "K",
+		"text": "Shooting a laser beam, creating an earth tremor...",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "K",
+		"text": "And dashing with a sword!",
+		"sprite": "Serious"
+	},
+	{
+		"char": "M",
+		"text": "Wow, that matches up exactly with what I gleaned using magic.",
+		"sprite": "Normal"
+	},
+	{
+		"char": "K",
+		"text": "Wait, you knew all this already?",
+		"sprite": "Confused"
+	},
+	{
+		"char": "K",
+		"text": "Why didn't you tell me at the start!",
+		"sprite": "Serious"
+	},
+	{
+		"char": "M",
+		"text": "Just hold on.",
+		"sprite": "Serious"
+	},
+	{
+		"char": "M",
+		"text": "It's better you learn from the real thing. That's why we're using my loops.",
+		"sprite": "Yap2"
+	},
+	{
+		"char": "M",
+		"text": "You didn't get paired up with the Info Mage, you got paired up with me, the Loop Mage.",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "K",
+		"text": "...",
+		"sprite": "Serious"
+	},
+	{
+		"char": "M",
+		"text": "We're probably a better fit for each other anyways.",
+		"sprite": "Normal"
+	},
+	{
+		"char": "K",
+		"text": "?",
+		"sprite": "Confused"
+	}
 ]

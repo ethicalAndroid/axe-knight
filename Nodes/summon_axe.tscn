@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfhl6o2g4e8lp"]
+[gd_scene load_steps=8 format=3 uid="uid://bfhl6o2g4e8lp"]
 
 [ext_resource type="Script" path="res://Scripts/SummonAxe.gd" id="1_woh0g"]
 [ext_resource type="PackedScene" uid="uid://cbwkkhb36d7e0" path="res://Nodes/axe.tscn" id="2_2yl0f"]
 [ext_resource type="Texture2D" uid="uid://dvrq1fr4cctgr" path="res://Sprites/s-shine2.png" id="3_mm18q"]
+[ext_resource type="AudioStream" uid="uid://1ql0eefrhsw0" path="res://Audio/d-axe.wav" id="3_xhwf4"]
 
 [sub_resource type="Animation" id="Animation_cxhq7"]
 length = 0.001
@@ -44,6 +45,7 @@ _data = {
 [node name="SummonAxe" type="Node2D"]
 script = ExtResource("1_woh0g")
 summon = ExtResource("2_2yl0f")
+sfx = ExtResource("3_xhwf4")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4

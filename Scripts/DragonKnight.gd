@@ -23,6 +23,13 @@ class_name DragonKnight extends CharacterBody2D
 @export var _trail: PackedScene
 @export var _sprites: Array[Sprite2D]
 
+@export var _sfx_dash_point: AudioStream
+@export var _sfx_dash_player: AudioStream
+@export var _sfx_slash: AudioStream
+@export var _sfx_stomp: AudioStream
+@export var _sfx_axe: AudioStream
+@export var _sfx_javelin: AudioStream
+
 enum Attack {
     Axe, Laser, Shot, Tremor, Dash
 }
@@ -52,14 +59,17 @@ func NextAttack():
         Attack.Axe:
             _axe.StartAttack(GetDirection().x)
             _animator.StartAnimation("axe")
+            Audio.Play(_sfx_axe)
         Attack.Laser:
             _laser.StartAiming()
         Attack.Shot:
             _shot.Shoot()
             _animator.StartAnimation("javelin")
+            Audio.Play(_sfx_javelin)
         Attack.Tremor:
             _tremor.StartTremors()
             _animator.StartAnimation("stomp")
+            Audio.Play(_sfx_stomp)
         Attack.Dash:
             NextDash()
     if attack != Attack.Dash:
@@ -79,6 +89,7 @@ func OnHit(_direction: Vector2, _melee: bool):
     if (IsDashing() && _melee):
         _target.Clash(global_position)
         _animator.StartAnimation("slash")
+        Audio.Play(_sfx_slash)
         EndDash()
         return
     on_hit.emit()
@@ -96,8 +107,10 @@ func NextDash():
     var t_pos: Vector2
     if (_dash_targets[d_index] == null):
         t_pos = _target.global_position + _target.velocity * FORWARD_AIM_TIME
+        Audio.Play(_sfx_dash_player)
     else:
         t_pos = _dash_targets[d_index].global_position
+        Audio.Play(_sfx_dash_point)
     var towards = t_pos - global_position
     dash_direction = towards.normalized()
     _animator.SetDirection(dash_direction.x)
@@ -145,6 +158,7 @@ func DashMovement(delta: float):
             _target.OnHit(dash_direction, true)
         
         _animator.StartAnimation("slash")
+        Audio.Play(_sfx_slash)
         EndDash()
         return
 

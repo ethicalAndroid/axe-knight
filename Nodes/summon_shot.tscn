@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4m210e4cvgp6"]
+[gd_scene load_steps=8 format=3 uid="uid://b4m210e4cvgp6"]
 
 [ext_resource type="Script" path="res://Scripts/SummonShot.gd" id="1_gtyia"]
 [ext_resource type="PackedScene" uid="uid://cie87j8lbu1kn" path="res://Nodes/shot.tscn" id="2_ve0jh"]
 [ext_resource type="Texture2D" uid="uid://dvrq1fr4cctgr" path="res://Sprites/s-shine2.png" id="3_aegwj"]
+[ext_resource type="AudioStream" uid="uid://dat0di3rtur88" path="res://Audio/d-javelin.wav" id="3_yix33"]
 
 [sub_resource type="Animation" id="Animation_cxhq7"]
 length = 0.001
@@ -44,6 +45,7 @@ _data = {
 [node name="SummonShot" type="Node2D"]
 script = ExtResource("1_gtyia")
 summon = ExtResource("2_ve0jh")
+sfx = ExtResource("3_yix33")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.8

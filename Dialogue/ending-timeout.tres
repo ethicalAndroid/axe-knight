@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="DBlock" load_steps=13 format=3 uid="uid://bcxdpn0rxn5e8"]
+
+[ext_resource type="Script" path="res://Scripts/DFrame.gd" id="1_rvy5r"]
+[ext_resource type="Script" path="res://Scripts/DBlock.gd" id="2_b32wn"]
+
+[sub_resource type="Resource" id="Resource_sx2j3"]
+script = ExtResource("1_rvy5r")
+sprite = 4
+is_knight = true
+text = "Wow, that was a tough fight!"
+
+[sub_resource type="Resource" id="Resource_0frhn"]
+script = ExtResource("1_rvy5r")
+sprite = 5
+is_knight = true
+text = "It took a little more than 40 seconds, but I guess that was only a limit in the time loops."
+
+[sub_resource type="Resource" id="Resource_p7nav"]
+script = ExtResource("1_rvy5r")
+sprite = 1
+is_knight = true
+text = "Loop Mage, we did it!"
+
+[sub_resource type="Resource" id="Resource_ed3df"]
+script = ExtResource("1_rvy5r")
+sprite = 1
+is_knight = true
+text = "..."
+
+[sub_resource type="Resource" id="Resource_483gi"]
+script = ExtResource("1_rvy5r")
+sprite = 0
+is_knight = true
+text = "Loop Mage?"
+
+[sub_resource type="Resource" id="Resource_v7qwh"]
+script = ExtResource("1_rvy5r")
+sprite = 2
+is_knight = true
+text = "No. NO. NO, NO, NO! LOOP MAGE!"
+
+[sub_resource type="Resource" id="Resource_vt43p"]
+script = ExtResource("1_rvy5r")
+sprite = 2
+is_knight = true
+text = "The Dragon General! He must have spotted you."
+
+[sub_resource type="Resource" id="Resource_talkb"]
+script = ExtResource("1_rvy5r")
+sprite = 2
+is_knight = true
+text = "And now you're dead, killed by his magic."
+
+[sub_resource type="Resource" id="Resource_202ys"]
+script = ExtResource("1_rvy5r")
+sprite = 2
+is_knight = true
+text = "If only I had killed the general faster..."
+
+[sub_resource type="Resource" id="Resource_pia66"]
+script = ExtResource("1_rvy5r")
+sprite = 2
+is_knight = true
+text = "We saved the village, but at what cost?"
+
+[resource]
+script = ExtResource("2_b32wn")
+mage_start = 6
+knight_start = 0
+frames = Array[ExtResource("1_rvy5r")]([SubResource("Resource_sx2j3"), SubResource("Resource_0frhn"), SubResource("Resource_p7nav"), SubResource("Resource_ed3df"), SubResource("Resource_483gi"), SubResource("Resource_v7qwh"), SubResource("Resource_vt43p"), SubResource("Resource_talkb"), SubResource("Resource_202ys"), SubResource("Resource_pia66")])

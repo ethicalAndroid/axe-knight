@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bxk8v11futi3"]
+
+[node name="Audio" type="AudioStreamPlayer"]
+volume_db = -7.0
+max_polyphony = 30

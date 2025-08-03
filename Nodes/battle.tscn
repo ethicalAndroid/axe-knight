@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b47ocalwjtfgw"]
+[gd_scene load_steps=30 format=4 uid="uid://b47ocalwjtfgw"]
 
 [ext_resource type="Script" path="res://Scripts/PauseGame.gd" id="1_all60"]
 [ext_resource type="TileSet" uid="uid://reoc0hubig32" path="res://Tilesets/main_tiles.tres" id="2_47fn8"]
@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://dt22uxjvts3nu" path="res://Sprites/heart1.png" id="11_hhkw1"]
 [ext_resource type="Script" path="res://Scripts/BossHealth.gd" id="12_cpx36"]
 [ext_resource type="Texture2D" uid="uid://pguifrjou1pu" path="res://Sprites/heart2.png" id="12_r2o8x"]
+[ext_resource type="AudioStream" uid="uid://chhy858fpudsc" path="res://Audio/k-hurt.wav" id="13_fgb7k"]
 [ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="13_spujk"]
 [ext_resource type="Texture2D" uid="uid://nmcrofg5lqvf" path="res://Sprites/boss-bar-segment-empty.png" id="14_3ju8e"]
+[ext_resource type="AudioStream" uid="uid://cnoo71n2vhbya" path="res://Audio/k-death.wav" id="14_hct40"]
 [ext_resource type="Texture2D" uid="uid://2p8v8l5la3i7" path="res://Sprites/boss-bar-segment.png" id="15_we1wr"]
+[ext_resource type="AudioStream" uid="uid://b0lp7g5gu2545" path="res://Audio/d-hurt.wav" id="16_cpwvn"]
+[ext_resource type="AudioStream" uid="uid://ix5u7apwoql4" path="res://Audio/d-death.wav" id="17_mv63x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nseeh"]
 texture = ExtResource("3_agqxg")
@@ -225,6 +229,8 @@ script = ExtResource("10_af6by")
 life_tex = ExtResource("11_hhkw1")
 dead_tex = ExtResource("12_r2o8x")
 life_sprites = [NodePath("1"), NodePath("2"), NodePath("3")]
+hurt = ExtResource("13_fgb7k")
+death = ExtResource("14_hct40")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/HP"]
 libraries = {
@@ -277,6 +283,8 @@ pivot_offset = Vector2(630, 45)
 script = ExtResource("12_cpx36")
 max_life = 20
 bar = NodePath("Control/TextureRect2")
+hurt = ExtResource("16_cpwvn")
+death = ExtResource("17_mv63x")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="UI/Boss Bar"]
 modulate = Color(0.266667, 0.509804, 0.266667, 1)
@@ -320,8 +328,8 @@ stretch_mode = 1
 
 [connection signal="on_hit" from="AxeKnight" to="UI/HP" method="LoseLife"]
 [connection signal="on_hit" from="DragonKnight" to="UI/Boss Bar" method="LoseLife"]
-[connection signal="timeout" from="UI/Timer/TextTimer" to="." method="DeferLose"]
-[connection signal="on_death" from="UI/HP" to="." method="DeferLose"]
+[connection signal="timeout" from="UI/Timer/TextTimer" to="." method="DeferTimeout"]
 [connection signal="on_death" from="UI/HP" to="." method="Pause"]
-[connection signal="on_death" from="UI/Boss Bar" to="." method="DeferWin"]
+[connection signal="on_death" from="UI/HP" to="." method="DeferLose"]
 [connection signal="on_death" from="UI/Boss Bar" to="." method="Pause"]
+[connection signal="on_death" from="UI/Boss Bar" to="." method="DeferWin"]

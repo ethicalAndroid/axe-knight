@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="DBlock" load_steps=13 format=3 uid="uid://cv4fg1f0w5p5g"]
+
+[ext_resource type="Script" path="res://Scripts/DFrame.gd" id="1_w5ucw"]
+[ext_resource type="Script" path="res://Scripts/DBlock.gd" id="2_4hmyk"]
+
+[sub_resource type="Resource" id="Resource_anfxr"]
+script = ExtResource("1_w5ucw")
+sprite = 0
+is_knight = false
+text = "No."
+
+[sub_resource type="Resource" id="Resource_0rdoa"]
+script = ExtResource("1_w5ucw")
+sprite = 4
+is_knight = false
+text = "NO, NO, NO."
+
+[sub_resource type="Resource" id="Resource_467n3"]
+script = ExtResource("1_w5ucw")
+sprite = 2
+is_knight = false
+text = "NO!"
+
+[sub_resource type="Resource" id="Resource_7t3oo"]
+script = ExtResource("1_w5ucw")
+sprite = 2
+is_knight = false
+text = "YOU SAID THAT YOU WERE READY!"
+
+[sub_resource type="Resource" id="Resource_vvr8x"]
+script = ExtResource("1_w5ucw")
+sprite = 2
+is_knight = false
+text = "NOW WHAT, YOU LEAVE US TO DIE?"
+
+[sub_resource type="Resource" id="Resource_dw4pf"]
+script = ExtResource("1_w5ucw")
+sprite = 2
+is_knight = false
+text = "WHAT AM I SUPPOSED TO DO?"
+
+[sub_resource type="Resource" id="Resource_wleep"]
+script = ExtResource("1_w5ucw")
+sprite = 2
+is_knight = false
+text = "..."
+
+[sub_resource type="Resource" id="Resource_5jnds"]
+script = ExtResource("1_w5ucw")
+sprite = 0
+is_knight = false
+text = "Now the general is coming."
+
+[sub_resource type="Resource" id="Resource_5paep"]
+script = ExtResource("1_w5ucw")
+sprite = 0
+is_knight = false
+text = "I have to try something. We have to protect the village."
+
+[sub_resource type="Resource" id="Resource_trb3e"]
+script = ExtResource("1_w5ucw")
+sprite = 2
+is_knight = false
+text = "Lands, watch over me."
+
+[resource]
+script = ExtResource("2_4hmyk")
+mage_start = 0
+knight_start = 6
+frames = Array[ExtResource("1_w5ucw")]([SubResource("Resource_anfxr"), SubResource("Resource_0rdoa"), SubResource("Resource_467n3"), SubResource("Resource_7t3oo"), SubResource("Resource_vvr8x"), SubResource("Resource_dw4pf"), SubResource("Resource_wleep"), SubResource("Resource_5jnds"), SubResource("Resource_5paep"), SubResource("Resource_trb3e")])

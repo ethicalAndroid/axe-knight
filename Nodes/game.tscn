@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bu0kfv25rq6qt"]
+[gd_scene load_steps=84 format=3 uid="uid://bu0kfv25rq6qt"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_uem2s"]
 [ext_resource type="PackedScene" uid="uid://b47ocalwjtfgw" path="res://Nodes/battle.tscn" id="2_4j5bd"]
@@ -40,6 +40,7 @@
 [ext_resource type="JSON" path="res://Dialogue/talk20.json" id="22_00ynn"]
 [ext_resource type="JSON" path="res://Dialogue/talk21.json" id="23_2ngnr"]
 [ext_resource type="JSON" path="res://Dialogue/talk22.json" id="24_x2jan"]
+[ext_resource type="JSON" path="res://Dialogue/intro.json" id="25_24rg2"]
 [ext_resource type="JSON" path="res://Dialogue/final-ask1.json" id="26_frf5k"]
 [ext_resource type="JSON" path="res://Dialogue/final-ask2.json" id="27_y6eet"]
 [ext_resource type="JSON" path="res://Dialogue/final-ask3.json" id="28_m7k3a"]
@@ -49,12 +50,17 @@
 [ext_resource type="JSON" path="res://Dialogue/final-no1.json" id="32_t5bm8"]
 [ext_resource type="JSON" path="res://Dialogue/final-no2.json" id="33_mhtav"]
 [ext_resource type="JSON" path="res://Dialogue/final-no3.json" id="34_cbwo4"]
+[ext_resource type="Resource" uid="uid://cv4fg1f0w5p5g" path="res://Dialogue/ending-lose.tres" id="35_1yowp"]
+[ext_resource type="Texture2D" uid="uid://br2mxrd2cqit6" path="res://Sprites/b-trees.png" id="36_4pacr"]
+[ext_resource type="Resource" uid="uid://bsxeigy6bfa2d" path="res://Dialogue/ending-win.tres" id="36_rkkpd"]
+[ext_resource type="Resource" uid="uid://bcxdpn0rxn5e8" path="res://Dialogue/ending-timeout.tres" id="37_545nd"]
 [ext_resource type="Texture2D" uid="uid://b1mmo6couwl1t" path="res://Sprites/pk-happy.png" id="39_eb46q"]
 [ext_resource type="Texture2D" uid="uid://bshxtswrlckec" path="res://Sprites/pk-serious.png" id="40_vcqtt"]
 [ext_resource type="Texture2D" uid="uid://qro6avy6nff3" path="res://Sprites/pk-confused.png" id="41_itn4i"]
 [ext_resource type="Texture2D" uid="uid://r21mia6mfdny" path="res://Sprites/pk-yap1.png" id="42_0qkpf"]
 [ext_resource type="Texture2D" uid="uid://d1gvdr6v3p5ei" path="res://Sprites/pk-yap2.png" id="43_r0b4r"]
 [ext_resource type="Texture2D" uid="uid://ccsnb3nrcm7xq" path="res://Sprites/pk-normal.png" id="45_xseln"]
+[ext_resource type="Texture2D" uid="uid://cfoh6ygqowli6" path="res://Sprites/empty.png" id="49_wn1ax"]
 [ext_resource type="Texture2D" uid="uid://cpskukkscg87h" path="res://Sprites/pm-happy.png" id="50_yx4yt"]
 [ext_resource type="Theme" uid="uid://bxv5n6kdg8o83" path="res://font.tres" id="51_dyhrf"]
 [ext_resource type="Texture2D" uid="uid://cfqa0vqk5ijsq" path="res://Sprites/pm-normal.png" id="51_w4oo1"]
@@ -62,6 +68,10 @@
 [ext_resource type="Texture2D" uid="uid://chsp84jvw18wj" path="res://Sprites/pm-confused.png" id="52_toklt"]
 [ext_resource type="Texture2D" uid="uid://bh2k70faxfdiv" path="res://Sprites/pm-yap1.png" id="53_82y1n"]
 [ext_resource type="Texture2D" uid="uid://c4oc5mxraj5qd" path="res://Sprites/pm-yap2.png" id="54_vc7b8"]
+[ext_resource type="PackedScene" uid="uid://bxk8v11futi3" path="res://Nodes/audio.tscn" id="63_lf3y2"]
+[ext_resource type="Script" path="res://Scripts/AudioMix.gd" id="65_khte6"]
+[ext_resource type="AudioStream" uid="uid://vxf5fu5e0mjd" path="res://Audio/TimeLoopBeatSoft.ogg" id="66_7gmnx"]
+[ext_resource type="AudioStream" uid="uid://cnoddf2o5wct2" path="res://Audio/TimeLoopBeatHard.ogg" id="67_yhcum"]
 
 [sub_resource type="Animation" id="Animation_digdf"]
 length = 0.001
@@ -226,18 +236,82 @@ _data = {
 "outro": SubResource("Animation_ihcyk")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("transition", "dialogue")]
+[sub_resource type="Animation" id="Animation_gijg3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Game Over:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7x4s4"]
+resource_name = "final"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Game Over:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1x5s3"]
+_data = {
+"RESET": SubResource("Animation_gijg3"),
+"final": SubResource("Animation_7x4s4")
+}
+
+[sub_resource type="Theme" id="Theme_kk281"]
+default_font_size = 200
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("transition", "transition_final", "game_over", "dialogue", "music")]
 script = ExtResource("1_uem2s")
 transition = NodePath("ScreenTransition")
+transition_final = NodePath("ScreenTransition2")
+game_over = NodePath("AnimationPlayer")
 battle_scene = ExtResource("2_4j5bd")
 dialogue = NodePath("Control")
+music = NodePath("AudioMix")
 talk_blocks = Array[JSON]([ExtResource("3_3k3d6"), ExtResource("4_kqyhy"), ExtResource("5_r225q"), ExtResource("6_4kk0u"), ExtResource("7_moa0y"), ExtResource("8_h1nfx"), ExtResource("9_cppiu"), ExtResource("10_04w4y"), ExtResource("11_f62sw"), ExtResource("12_6awd2"), ExtResource("13_ruqm6"), ExtResource("14_ss55a"), ExtResource("15_xmoc0"), ExtResource("16_0nxox"), ExtResource("17_a8nty"), ExtResource("18_x6mh6"), ExtResource("19_2wbnm"), ExtResource("20_l6ox3"), ExtResource("21_gkj66"), ExtResource("22_00ynn"), ExtResource("23_2ngnr"), ExtResource("24_x2jan")])
-intro = ExtResource("3_3k3d6")
+intro = ExtResource("25_24rg2")
 final_loop_ask = Array[JSON]([ExtResource("26_frf5k"), ExtResource("27_y6eet"), ExtResource("28_m7k3a")])
 final_loop_yes = Array[JSON]([ExtResource("29_l3ksu"), ExtResource("30_u4q5d"), ExtResource("31_3kxhd")])
 final_loop_no = Array[JSON]([ExtResource("32_t5bm8"), ExtResource("33_mhtav"), ExtResource("34_cbwo4")])
+ending_lose = ExtResource("35_1yowp")
+ending_win = ExtResource("36_rkkpd")
+ending_timeout = ExtResource("37_545nd")
 
 [node name="ScreenTransition" parent="." instance=ExtResource("5_s2iuk")]
+
+[node name="ScreenTransition2" parent="." instance=ExtResource("5_s2iuk")]
+
+[node name="Spin" parent="ScreenTransition2" index="0"]
+visible = false
+script = null
+
+[node name="Vortex" parent="ScreenTransition2/Spin/Left/Pivot" index="0"]
+modulate = Color(0.572988, 0.572988, 0.572988, 1)
+rotation = 0.0
+scale = Vector2(1, 1)
+texture = ExtResource("36_4pacr")
+
+[node name="Vortex" parent="ScreenTransition2/Spin/Right/Pivot" index="0"]
+modulate = Color(0.572988, 0.572988, 0.572988, 1)
+rotation = 0.0
+scale = Vector2(1, 1)
+texture = ExtResource("36_4pacr")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("text", "mage", "knight", "transition")]
 z_index = 2000
@@ -259,7 +333,7 @@ transition = NodePath("DialogueTransition")
 script = ExtResource("6_kax5m")
 sprite = NodePath("LeftBounce/Sprite2D")
 bounce = NodePath("LeftBounce/AnimationPlayer")
-sprites = Array[Texture]([ExtResource("45_xseln"), ExtResource("39_eb46q"), ExtResource("40_vcqtt"), ExtResource("41_itn4i"), ExtResource("42_0qkpf"), ExtResource("43_r0b4r")])
+sprites = Array[Texture]([ExtResource("45_xseln"), ExtResource("39_eb46q"), ExtResource("40_vcqtt"), ExtResource("41_itn4i"), ExtResource("42_0qkpf"), ExtResource("43_r0b4r"), ExtResource("49_wn1ax")])
 voices = Array[AudioStream]([ExtResource("7_2it7u"), ExtResource("8_qqrw6"), ExtResource("9_8opl0"), ExtResource("10_y0yf2"), ExtResource("11_yiver"), ExtResource("7_2it7u")])
 audio = NodePath("AudioStreamPlayer")
 
@@ -283,7 +357,7 @@ volume_db = -5.0
 script = ExtResource("6_kax5m")
 sprite = NodePath("RightBounce/Sprite2D")
 bounce = NodePath("RightBounce/AnimationPlayer")
-sprites = Array[Texture]([ExtResource("51_w4oo1"), ExtResource("50_yx4yt"), ExtResource("51_weild"), ExtResource("52_toklt"), ExtResource("53_82y1n"), ExtResource("54_vc7b8")])
+sprites = Array[Texture]([ExtResource("51_w4oo1"), ExtResource("50_yx4yt"), ExtResource("51_weild"), ExtResource("52_toklt"), ExtResource("53_82y1n"), ExtResource("54_vc7b8"), ExtResource("49_wn1ax")])
 voices = Array[AudioStream]([ExtResource("13_20our"), ExtResource("14_f0jdo"), ExtResource("15_tq662"), ExtResource("16_sj7cg"), ExtResource("17_wbyop"), ExtResource("13_20our")])
 audio = NodePath("RightBounce/AudioStreamPlayer")
 
@@ -476,9 +550,84 @@ direction = Vector2(1, 0)
 [node name="RichTextLabel" parent="Choices/Final/pivot/Yes" index="1"]
 text = "[center]Yes![/center]"
 
+[node name="Audio" parent="." instance=ExtResource("63_lf3y2")]
+
+[node name="AudioMix" type="Node" parent="." node_paths=PackedStringArray("a1", "a2")]
+script = ExtResource("65_khte6")
+trans_speed = 1.0
+a1 = NodePath("Battle")
+a2 = NodePath("Menu")
+l1 = 0.3
+l2 = 0.3
+
+[node name="Menu" type="AudioStreamPlayer" parent="AudioMix"]
+stream = ExtResource("66_7gmnx")
+volume_db = -80.0
+autoplay = true
+
+[node name="Battle" type="AudioStreamPlayer" parent="AudioMix"]
+stream = ExtResource("67_yhcum")
+volume_db = -80.0
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1x5s3")
+}
+
+[node name="Game Over" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 4096
+layout_mode = 3
+anchors_preset = 0
+offset_left = 960.0
+offset_top = 333.0
+offset_right = 1000.0
+offset_bottom = 373.0
+
+[node name="Talk" type="Control" parent="Game Over"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -400.0
+offset_top = -328.0
+offset_right = 400.0
+offset_bottom = 328.0
+pivot_offset = Vector2(150, 50)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Game Over/Talk"]
+modulate = Color(0.2522, 0.2522, 0.26, 0.552941)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_jhfk8")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Game Over/Talk"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -43.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_kk281")
+bbcode_enabled = true
+text = "[center]Game[/center]
+[center]Over[/center]"
+fit_content = true
+
 [connection signal="final_menu" from="." to="Choices/Final" method="Ready"]
 [connection signal="loop_menu" from="." to="Choices/Loop" method="Ready"]
 [connection signal="animation_finished" from="ScreenTransition" to="." method="AnimationEnded"]
+[connection signal="animation_finished" from="ScreenTransition2" to="." method="FinalEnded"]
 [connection signal="done" from="Control" to="." method="DDialogueEnded"]
 [connection signal="animation_finished" from="Control/Knight/LeftBounce/AnimationPlayer" to="Control" method="AnimationEnded"]
 [connection signal="animation_finished" from="Control/DialogueTransition" to="Control" method="AnimationEnded"]
@@ -493,6 +642,7 @@ text = "[center]Yes![/center]"
 [connection signal="choice_made" from="Choices/Final/pivot/Yes" to="." method="FinalLoopYes"]
 [connection signal="choice_made" from="Choices/Final/pivot/Yes" to="Choices/Final" method="Choose"]
 
+[editable path="ScreenTransition2"]
 [editable path="Choices/Loop/pivot/Talk"]
 [editable path="Choices/Loop/pivot/Loop!"]
 [editable path="Choices/Loop/pivot/Finish It"]

@@ -1,7 +1,7 @@
 class_name DDialogue extends Control
 
 enum TalkSprite {
-	Normal, Happy, Serious, Confused, Yap1, Yap2
+	Normal, Happy, Serious, Confused, Yap1, Yap2, None
 }
 
 @export var text: RichTextLabel
@@ -47,8 +47,8 @@ func StartBlock(given_block: DBlock):
 	i = 0
 	loading = true
 	block = given_block
-	mage.ShowSprite(TalkSprite.Normal)
-	knight.ShowSprite(TalkSprite.Normal)
+	mage.ShowSprite(block.mage_start)
+	knight.ShowSprite(block.knight_start)
 	text.text = ""
 	transition.queue("intro")
 

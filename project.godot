@@ -15,6 +15,10 @@ run/main_scene="res://Nodes/game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Audio="*res://Scripts/AudioMaster.gd"
+
 [display]
 
 window/size/viewport_width=1920
