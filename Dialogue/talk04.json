@@ -11,7 +11,17 @@
   },
   {
     "char": "M",
-    "text": "Yeah that's probably it.",
+    "text": "Yeah! You hit the nail on the head.",
+    "sprite": "Yap2"
+  },
+  {
+    "char": "L",
+    "text": "That's it?",
+    "sprite": "Yap1"
+  },
+  {
+    "char": "M",
+    "text": "Yep!",
     "sprite": "Yap2"
   }
 ]

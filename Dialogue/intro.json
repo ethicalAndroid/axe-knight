@@ -36,7 +36,7 @@
   },
   {
     "char": "K",
-    "text": "I can move with [u][A and D][u] or with [u](Left Stick or D-Pad)[/u].",
+    "text": "I can move with [u][A and D][/u] or with [u](Left Stick or D-Pad)[/u].",
     "sprite": "Yap1"
   },
   {
@@ -51,7 +51,7 @@
   },
   {
     "char": "K",
-    "text": "and I can aim with [u][Mouse][/u] or with [u](Right Stick)[/u].",
+    "text": "And I can aim with [u][Mouse][/u] or with [u](Right Stick)[/u].",
     "sprite": "Yap2"
   },
   {

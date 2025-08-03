@@ -1,26 +1,57 @@
-[gd_scene load_steps=29 format=3 uid="uid://bu0kfv25rq6qt"]
+[gd_scene load_steps=60 format=3 uid="uid://bu0kfv25rq6qt"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_uem2s"]
 [ext_resource type="PackedScene" uid="uid://b47ocalwjtfgw" path="res://Nodes/battle.tscn" id="2_4j5bd"]
+[ext_resource type="JSON" path="res://Dialogue/talk01.json" id="3_3k3d6"]
 [ext_resource type="JSON" path="res://Dialogue/intro.json" id="3_n821p"]
 [ext_resource type="Script" path="res://Scripts/DDialogue.gd" id="4_7ptc5"]
 [ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="4_jhfk8"]
+[ext_resource type="JSON" path="res://Dialogue/talk02.json" id="4_kqyhy"]
 [ext_resource type="Texture2D" uid="uid://cqtxpbkyqk6df" path="res://Sprites/SquareTest-big.png" id="5_0kcbe"]
+[ext_resource type="JSON" path="res://Dialogue/talk03.json" id="5_r225q"]
 [ext_resource type="PackedScene" uid="uid://dsmjm30segrh2" path="res://Nodes/screen_transition.tscn" id="5_s2iuk"]
+[ext_resource type="JSON" path="res://Dialogue/talk04.json" id="6_4kk0u"]
 [ext_resource type="Theme" uid="uid://dctpyyh1dray1" path="res://button.tres" id="6_jleod"]
 [ext_resource type="Script" path="res://Scripts/DPerson.gd" id="6_kax5m"]
 [ext_resource type="AudioStream" uid="uid://dkue4l808rlt" path="res://Audio/k-normal.ogg" id="7_2it7u"]
+[ext_resource type="JSON" path="res://Dialogue/talk05.json" id="7_moa0y"]
+[ext_resource type="JSON" path="res://Dialogue/talk06.json" id="8_h1nfx"]
 [ext_resource type="AudioStream" uid="uid://vulpg0veo3vg" path="res://Audio/k-happy.ogg" id="8_qqrw6"]
 [ext_resource type="AudioStream" uid="uid://dvdch41c483va" path="res://Audio/k-serious.ogg" id="9_8opl0"]
+[ext_resource type="JSON" path="res://Dialogue/talk07.json" id="9_cppiu"]
+[ext_resource type="JSON" path="res://Dialogue/talk08.json" id="10_04w4y"]
 [ext_resource type="AudioStream" uid="uid://dvi7auutfh77k" path="res://Audio/k-confused.ogg" id="10_y0yf2"]
+[ext_resource type="JSON" path="res://Dialogue/talk09.json" id="11_f62sw"]
 [ext_resource type="AudioStream" uid="uid://ubp0q4v32bjy" path="res://Audio/k-normal2.ogg" id="11_yiver"]
+[ext_resource type="JSON" path="res://Dialogue/talk10.json" id="12_6awd2"]
 [ext_resource type="AudioStream" uid="uid://p5pt0u8u67p1" path="res://Audio/m-normal.ogg" id="13_20our"]
+[ext_resource type="JSON" path="res://Dialogue/talk11.json" id="13_ruqm6"]
 [ext_resource type="AudioStream" uid="uid://d00sq0ilym0cu" path="res://Audio/m-happy.ogg" id="14_f0jdo"]
+[ext_resource type="JSON" path="res://Dialogue/talk12.json" id="14_ss55a"]
 [ext_resource type="AudioStream" uid="uid://d23u70bnljbp0" path="res://Audio/m-serious.ogg" id="15_tq662"]
+[ext_resource type="JSON" path="res://Dialogue/talk13.json" id="15_xmoc0"]
+[ext_resource type="JSON" path="res://Dialogue/talk14.json" id="16_0nxox"]
 [ext_resource type="AudioStream" uid="uid://by587el00k0fs" path="res://Audio/m-confused.ogg" id="16_sj7cg"]
+[ext_resource type="JSON" path="res://Dialogue/talk15.json" id="17_a8nty"]
 [ext_resource type="AudioStream" uid="uid://b50gaukrcjdyy" path="res://Audio/m-normal2.ogg" id="17_wbyop"]
 [ext_resource type="Script" path="res://Scripts/ChoiceGroup.gd" id="18_whmcp"]
+[ext_resource type="JSON" path="res://Dialogue/talk16.json" id="18_x6mh6"]
+[ext_resource type="JSON" path="res://Dialogue/talk17.json" id="19_2wbnm"]
 [ext_resource type="PackedScene" uid="uid://cjs88tnrucxfl" path="res://Nodes/choice.tscn" id="20_70yp2"]
+[ext_resource type="JSON" path="res://Dialogue/talk18.json" id="20_l6ox3"]
+[ext_resource type="JSON" path="res://Dialogue/talk19.json" id="21_gkj66"]
+[ext_resource type="JSON" path="res://Dialogue/talk20.json" id="22_00ynn"]
+[ext_resource type="JSON" path="res://Dialogue/talk21.json" id="23_2ngnr"]
+[ext_resource type="JSON" path="res://Dialogue/talk22.json" id="24_x2jan"]
+[ext_resource type="JSON" path="res://Dialogue/final-ask1.json" id="26_frf5k"]
+[ext_resource type="JSON" path="res://Dialogue/final-ask2.json" id="27_y6eet"]
+[ext_resource type="JSON" path="res://Dialogue/final-ask3.json" id="28_m7k3a"]
+[ext_resource type="JSON" path="res://Dialogue/final-yes1.json" id="29_l3ksu"]
+[ext_resource type="JSON" path="res://Dialogue/final-yes2.json" id="30_u4q5d"]
+[ext_resource type="JSON" path="res://Dialogue/final-yes3.json" id="31_3kxhd"]
+[ext_resource type="JSON" path="res://Dialogue/final-no1.json" id="32_t5bm8"]
+[ext_resource type="JSON" path="res://Dialogue/final-no2.json" id="33_mhtav"]
+[ext_resource type="JSON" path="res://Dialogue/final-no3.json" id="34_cbwo4"]
 
 [sub_resource type="Animation" id="Animation_digdf"]
 length = 0.001
@@ -190,7 +221,11 @@ script = ExtResource("1_uem2s")
 transition = NodePath("ScreenTransition")
 battle_scene = ExtResource("2_4j5bd")
 dialogue = NodePath("Control")
+talk_blocks = Array[JSON]([ExtResource("3_3k3d6"), ExtResource("4_kqyhy"), ExtResource("5_r225q"), ExtResource("6_4kk0u"), ExtResource("7_moa0y"), ExtResource("8_h1nfx"), ExtResource("9_cppiu"), ExtResource("10_04w4y"), ExtResource("11_f62sw"), ExtResource("12_6awd2"), ExtResource("13_ruqm6"), ExtResource("14_ss55a"), ExtResource("15_xmoc0"), ExtResource("16_0nxox"), ExtResource("17_a8nty"), ExtResource("18_x6mh6"), ExtResource("19_2wbnm"), ExtResource("20_l6ox3"), ExtResource("21_gkj66"), ExtResource("22_00ynn"), ExtResource("23_2ngnr"), ExtResource("24_x2jan")])
 intro = ExtResource("3_n821p")
+final_loop_ask = Array[JSON]([ExtResource("26_frf5k"), ExtResource("27_y6eet"), ExtResource("28_m7k3a")])
+final_loop_yes = Array[JSON]([ExtResource("29_l3ksu"), ExtResource("30_u4q5d"), ExtResource("31_3kxhd")])
+final_loop_no = Array[JSON]([ExtResource("32_t5bm8"), ExtResource("33_mhtav"), ExtResource("34_cbwo4")])
 
 [node name="ScreenTransition" parent="." instance=ExtResource("5_s2iuk")]
 
