@@ -140,7 +140,7 @@ libraries = {
 z_index = 999
 script = ExtResource("1_1c2q1")
 spins = [NodePath("Left/Pivot/Vortex"), NodePath("Right/Pivot/Vortex")]
-speed = 1.0
+speed = 0.2
 
 [node name="Left" type="Sprite2D" parent="Spin"]
 clip_children = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bu0kfv25rq6qt"]
+[gd_scene load_steps=71 format=3 uid="uid://bu0kfv25rq6qt"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_uem2s"]
 [ext_resource type="PackedScene" uid="uid://b47ocalwjtfgw" path="res://Nodes/battle.tscn" id="2_4j5bd"]
@@ -7,11 +7,9 @@
 [ext_resource type="Script" path="res://Scripts/DDialogue.gd" id="4_7ptc5"]
 [ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="4_jhfk8"]
 [ext_resource type="JSON" path="res://Dialogue/talk02.json" id="4_kqyhy"]
-[ext_resource type="Texture2D" uid="uid://cqtxpbkyqk6df" path="res://Sprites/SquareTest-big.png" id="5_0kcbe"]
 [ext_resource type="JSON" path="res://Dialogue/talk03.json" id="5_r225q"]
 [ext_resource type="PackedScene" uid="uid://dsmjm30segrh2" path="res://Nodes/screen_transition.tscn" id="5_s2iuk"]
 [ext_resource type="JSON" path="res://Dialogue/talk04.json" id="6_4kk0u"]
-[ext_resource type="Theme" uid="uid://dctpyyh1dray1" path="res://button.tres" id="6_jleod"]
 [ext_resource type="Script" path="res://Scripts/DPerson.gd" id="6_kax5m"]
 [ext_resource type="AudioStream" uid="uid://dkue4l808rlt" path="res://Audio/k-normal.ogg" id="7_2it7u"]
 [ext_resource type="JSON" path="res://Dialogue/talk05.json" id="7_moa0y"]
@@ -52,6 +50,19 @@
 [ext_resource type="JSON" path="res://Dialogue/final-no1.json" id="32_t5bm8"]
 [ext_resource type="JSON" path="res://Dialogue/final-no2.json" id="33_mhtav"]
 [ext_resource type="JSON" path="res://Dialogue/final-no3.json" id="34_cbwo4"]
+[ext_resource type="Texture2D" uid="uid://b1mmo6couwl1t" path="res://Sprites/pk-happy.png" id="39_eb46q"]
+[ext_resource type="Texture2D" uid="uid://bshxtswrlckec" path="res://Sprites/pk-serious.png" id="40_vcqtt"]
+[ext_resource type="Texture2D" uid="uid://qro6avy6nff3" path="res://Sprites/pk-confused.png" id="41_itn4i"]
+[ext_resource type="Texture2D" uid="uid://r21mia6mfdny" path="res://Sprites/pk-yap1.png" id="42_0qkpf"]
+[ext_resource type="Texture2D" uid="uid://d1gvdr6v3p5ei" path="res://Sprites/pk-yap2.png" id="43_r0b4r"]
+[ext_resource type="Texture2D" uid="uid://ccsnb3nrcm7xq" path="res://Sprites/pk-normal.png" id="45_xseln"]
+[ext_resource type="Texture2D" uid="uid://cpskukkscg87h" path="res://Sprites/pm-happy.png" id="50_yx4yt"]
+[ext_resource type="Theme" uid="uid://bxv5n6kdg8o83" path="res://font.tres" id="51_dyhrf"]
+[ext_resource type="Texture2D" uid="uid://cfqa0vqk5ijsq" path="res://Sprites/pm-normal.png" id="51_w4oo1"]
+[ext_resource type="Texture2D" uid="uid://b3s4ku8klh4w8" path="res://Sprites/pm-serious.png" id="51_weild"]
+[ext_resource type="Texture2D" uid="uid://chsp84jvw18wj" path="res://Sprites/pm-confused.png" id="52_toklt"]
+[ext_resource type="Texture2D" uid="uid://bh2k70faxfdiv" path="res://Sprites/pm-yap1.png" id="53_82y1n"]
+[ext_resource type="Texture2D" uid="uid://c4oc5mxraj5qd" path="res://Sprites/pm-yap2.png" id="54_vc7b8"]
 
 [sub_resource type="Animation" id="Animation_digdf"]
 length = 0.001
@@ -81,7 +92,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(0.5, 2, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_14tbb"]
@@ -102,7 +113,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(450, 1080)]
+"values": [Vector2(550, 1080)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -114,7 +125,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-225, 1130)]
+"values": [Vector2(-960, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -126,7 +137,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2145, 1130)]
+"values": [Vector2(1920, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5xcbo"]
@@ -142,7 +153,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(450, 1080), Vector2(450, 680)]
+"values": [Vector2(550, 1080), Vector2(550, 680)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -152,9 +163,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(-225, 1130), Vector2(225, 1130)]
+"values": [Vector2(-960, 0), Vector2(-100, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -164,9 +175,9 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(2145, 1130), Vector2(1695, 1130)]
+"values": [Vector2(1920, 0), Vector2(1010, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ihcyk"]
@@ -182,7 +193,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(450, 680), Vector2(450, 1080)]
+"values": [Vector2(550, 680), Vector2(550, 1080)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -194,7 +205,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(225, 1130), Vector2(-225, 1130)]
+"values": [Vector2(-100, 0), Vector2(-960, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -206,7 +217,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
-"values": [Vector2(1695, 1130), Vector2(2145, 1130)]
+"values": [Vector2(1010, 0), Vector2(1920, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mn8v1"]
@@ -245,6 +256,53 @@ mage = NodePath("Mage")
 knight = NodePath("Knight")
 transition = NodePath("DialogueTransition")
 
+[node name="Knight" type="Node2D" parent="Control" node_paths=PackedStringArray("sprite", "bounce", "audio")]
+script = ExtResource("6_kax5m")
+sprite = NodePath("LeftBounce/Sprite2D")
+bounce = NodePath("LeftBounce/AnimationPlayer")
+sprites = Array[Texture]([ExtResource("45_xseln"), ExtResource("39_eb46q"), ExtResource("40_vcqtt"), ExtResource("41_itn4i"), ExtResource("42_0qkpf"), ExtResource("43_r0b4r")])
+voices = Array[AudioStream]([ExtResource("7_2it7u"), ExtResource("8_qqrw6"), ExtResource("9_8opl0"), ExtResource("10_y0yf2"), ExtResource("11_yiver"), ExtResource("7_2it7u")])
+audio = NodePath("AudioStreamPlayer")
+
+[node name="LeftBounce" type="Node2D" parent="Control/Knight"]
+position = Vector2(-960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Knight/LeftBounce"]
+texture = ExtResource("45_xseln")
+centered = false
+offset = Vector2(0, 30)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Knight/LeftBounce"]
+libraries = {
+"": SubResource("AnimationLibrary_14tbb")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/Knight"]
+volume_db = -5.0
+
+[node name="Mage" type="Node2D" parent="Control" node_paths=PackedStringArray("sprite", "bounce", "audio")]
+script = ExtResource("6_kax5m")
+sprite = NodePath("RightBounce/Sprite2D")
+bounce = NodePath("RightBounce/AnimationPlayer")
+sprites = Array[Texture]([ExtResource("51_w4oo1"), ExtResource("50_yx4yt"), ExtResource("51_weild"), ExtResource("52_toklt"), ExtResource("53_82y1n"), ExtResource("54_vc7b8")])
+voices = Array[AudioStream]([ExtResource("13_20our"), ExtResource("14_f0jdo"), ExtResource("15_tq662"), ExtResource("16_sj7cg"), ExtResource("17_wbyop"), ExtResource("13_20our")])
+audio = NodePath("RightBounce/AudioStreamPlayer")
+
+[node name="RightBounce" type="Node2D" parent="Control/Mage"]
+position = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Mage/RightBounce"]
+texture = ExtResource("51_w4oo1")
+centered = false
+offset = Vector2(0, 30)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Mage/RightBounce"]
+libraries = {
+"": SubResource("AnimationLibrary_14tbb")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/Mage/RightBounce"]
+
 [node name="Control" type="Control" parent="Control"]
 layout_mode = 1
 anchors_preset = 7
@@ -252,8 +310,8 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -510.0
-offset_right = 510.0
+offset_left = -410.0
+offset_right = 410.0
 offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -283,58 +341,11 @@ offset_right = -30.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("6_jleod")
+theme = ExtResource("51_dyhrf")
 bbcode_enabled = true
 text = "I can move with [u][A and D][/u]
 or with [u](Left Stick or D-Pad)[/u]."
 scroll_active = false
-
-[node name="Knight" type="Node2D" parent="Control" node_paths=PackedStringArray("sprite", "bounce", "audio")]
-script = ExtResource("6_kax5m")
-sprite = NodePath("LeftBounce/Sprite2D")
-bounce = NodePath("LeftBounce/AnimationPlayer")
-sprites = Array[Texture]([null, null, null, null, null, null])
-voices = Array[AudioStream]([ExtResource("7_2it7u"), ExtResource("8_qqrw6"), ExtResource("9_8opl0"), ExtResource("10_y0yf2"), ExtResource("11_yiver"), ExtResource("7_2it7u")])
-audio = NodePath("AudioStreamPlayer")
-
-[node name="LeftBounce" type="Node2D" parent="Control/Knight"]
-position = Vector2(-225, 1130)
-
-[node name="Sprite2D" type="Sprite2D" parent="Control/Knight/LeftBounce"]
-scale = Vector2(7, 10)
-texture = ExtResource("5_0kcbe")
-offset = Vector2(0, -45)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Knight/LeftBounce"]
-libraries = {
-"": SubResource("AnimationLibrary_14tbb")
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/Knight"]
-volume_db = -5.0
-
-[node name="Mage" type="Node2D" parent="Control" node_paths=PackedStringArray("sprite", "bounce", "audio")]
-script = ExtResource("6_kax5m")
-sprite = NodePath("RightBounce/Sprite2D")
-bounce = NodePath("RightBounce/AnimationPlayer")
-sprites = Array[Texture]([null, null, null, null, null, null])
-voices = Array[AudioStream]([ExtResource("13_20our"), ExtResource("14_f0jdo"), ExtResource("15_tq662"), ExtResource("16_sj7cg"), ExtResource("17_wbyop"), ExtResource("13_20our")])
-audio = NodePath("RightBounce/AudioStreamPlayer")
-
-[node name="RightBounce" type="Node2D" parent="Control/Mage"]
-position = Vector2(2145, 1130)
-
-[node name="Sprite2D" type="Sprite2D" parent="Control/Mage/RightBounce"]
-scale = Vector2(7, 10)
-texture = ExtResource("5_0kcbe")
-offset = Vector2(0, -45)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Mage/RightBounce"]
-libraries = {
-"": SubResource("AnimationLibrary_14tbb")
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/Mage/RightBounce"]
 
 [node name="DialogueTransition" type="AnimationPlayer" parent="Control"]
 libraries = {

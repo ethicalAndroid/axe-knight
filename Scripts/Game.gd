@@ -33,7 +33,6 @@ func FinalLoopYes():
 
 func FinalLoopNo():
 	d_type = DDialogueType.NextLoop
-	final_loop = true
 	dialogue.StartJson(final_loop_no[final_loop_asked])
 	final_loop_asked = min(final_loop_asked + 1, final_loop_ask.size() - 1)
 
