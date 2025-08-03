@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://Scripts/SummonAxe.gd" id="1_woh0g"]
 [ext_resource type="PackedScene" uid="uid://cbwkkhb36d7e0" path="res://Nodes/axe.tscn" id="2_2yl0f"]
-[ext_resource type="Texture2D" uid="uid://c6we6b7w7l6fw" path="res://Sprites/Circle.png" id="3_hsscq"]
+[ext_resource type="Texture2D" uid="uid://dvrq1fr4cctgr" path="res://Sprites/s-shine2.png" id="3_mm18q"]
 
 [sub_resource type="Animation" id="Animation_cxhq7"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("Node2D/Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -25,7 +25,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/path = NodePath("Node2D/Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,9 +56,11 @@ libraries = {
 }
 autoplay = "grow"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 0, 1)
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_hsscq")
+texture = ExtResource("3_mm18q")
 
 [connection signal="timeout" from="Timer" to="." method="Shoot"]

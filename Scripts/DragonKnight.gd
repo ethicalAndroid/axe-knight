@@ -18,6 +18,11 @@ class_name DragonKnight extends CharacterBody2D
 
 @export var _dash_attack: ShapeCast2D
 
+@export var _shine_both: PackedScene
+@export var _shine_d: PackedScene
+@export var _trail: PackedScene
+@export var _sprites: Array[Sprite2D]
+
 enum Attack {
     Axe, Laser, Shot, Tremor, Dash
 }
@@ -34,17 +39,27 @@ const FORWARD_AIM_TIME = 0.2
 
 signal on_hit()
 
+func OnTrailTimeout():
+    if IsDashing() || !_attack_timers[Attack.Dash].is_stopped():
+        for x in _sprites:
+            var spawn: Fading = _trail.instantiate()
+            get_node(Fading.ROOT_PARENT).add_child(spawn)
+            spawn.Copy(x)
+
 func NextAttack():
     var attack: Attack = _attack_list[index]
     match attack:
         Attack.Axe:
             _axe.StartAttack(GetDirection().x)
+            _animator.StartAnimation("axe")
         Attack.Laser:
             _laser.StartAiming()
         Attack.Shot:
             _shot.Shoot()
+            _animator.StartAnimation("javelin")
         Attack.Tremor:
             _tremor.StartTremors()
+            _animator.StartAnimation("stomp")
         Attack.Dash:
             NextDash()
     if attack != Attack.Dash:
@@ -54,27 +69,30 @@ func NextAttack():
 func _ready():
     propagate_call("SetTarget", [_target])
     _attack_timers[0].start()
+    _animator.StartAnimation("idle")
 
 func EndDash():
     dash_time = 0
     _attack_timers[Attack.Dash].start()
 
 func OnHit(_direction: Vector2, _melee: bool):
-    if (dash_time > 0 && _melee):
+    if (IsDashing() && _melee):
         _target.Clash(global_position)
+        _animator.StartAnimation("slash")
         EndDash()
         return
     on_hit.emit()
     
 
 func _physics_process(delta: float) -> void:
-    if dash_time > 0:
+    if IsDashing():
         DashMovement(delta)
     else:
         LegsMovement(delta)
     move_and_slide()
 
 func NextDash():
+    _animator.StartAnimation("dash")
     var t_pos: Vector2
     if (_dash_targets[d_index] == null):
         t_pos = _target.global_position + _target.velocity * FORWARD_AIM_TIME
@@ -108,12 +126,25 @@ func LegsMovement(delta: float):
         movement.y = vertical_momentum
     velocity = movement
 
+func SpawnShine(shine: PackedScene):
+    var effect: Node2D = shine.instantiate()
+    get_node(Fading.ROOT_PARENT).add_child(effect)
+    effect.global_position = global_position + (_target.global_position - global_position) * 0.5
+    effect.rotation = Vector2.RIGHT.angle_to(global_position - _target.global_position)
+
+func IsDashing() -> bool:
+    return dash_time > 0
+
 func DashMovement(delta: float):
     if _dash_attack.is_colliding():
         if _target.attacks == AxeKnight.Attack.DashSpent || _target.attacks == AxeKnight.Attack.Charged:
+            SpawnShine(_shine_both)
             _target.Clash(global_position)
         else:
+            SpawnShine(_shine_d)
             _target.OnHit(dash_direction, true)
+        
+        _animator.StartAnimation("slash")
         EndDash()
         return
 
@@ -121,4 +152,5 @@ func DashMovement(delta: float):
     velocity = dash_direction * _dash_speed
 
     if dash_time < 0:
+        _animator.StartAnimation("idle")
         EndDash()

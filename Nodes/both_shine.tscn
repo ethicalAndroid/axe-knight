@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpgtll4rhvk2i"]
+
+[ext_resource type="Texture2D" uid="uid://cexbjebfjkx26" path="res://Sprites/s-shine3.png" id="1_mdahq"]
+[ext_resource type="Script" path="res://Scripts/Shrink.gd" id="2_eanxj"]
+
+[sub_resource type="Curve" id="Curve_j3a8k"]
+_data = [Vector2(0, 0.558795), 0.0, 2.27852, 0, 0, Vector2(1, 0), -3.0697, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_invpy"]
+offsets = PackedFloat32Array(0, 0.86828, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Shrink" type="Sprite2D"]
+texture = ExtResource("1_mdahq")
+script = ExtResource("2_eanxj")
+curve = SubResource("Curve_j3a8k")
+base_size = 1.0
+lifetime = 0.5
+gradient = SubResource("Gradient_invpy")

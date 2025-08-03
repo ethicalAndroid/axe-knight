@@ -8,6 +8,7 @@ class_name LaserBlaster extends Node2D
 @export var spend_timer: Timer
 @export var beam: PackedScene
 @export var danger: Line2D
+@export var animator: AnimationPlayer
 
 var target: Node2D
 var direction: Vector2
@@ -26,14 +27,21 @@ func StartAiming():
 	danger.visible = true
 	aim_timer.start()
 	state = State.Aiming
+	animator.stop()
+	animator.queue("aim")
 
 func StartCharging():
 	charge_timer.start()
 	state = State.Charging
+	animator.stop()
+	animator.queue("charge")
 
 func FinishCharging():
 	spend_timer.start()
 	state = State.Spent
+
+	animator.stop()
+	animator.queue("blast")
 
 	danger.visible = false
 
@@ -48,6 +56,8 @@ func FinishCharging():
 func StartIdle():
 	state = State.Idle
 	direction = Vector2.ZERO
+	animator.stop()
+	animator.queue("idle")
 
 
 func _process(_delta: float) -> void:

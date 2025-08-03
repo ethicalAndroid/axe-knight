@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjdnuxyaxwnea"]
+
+[ext_resource type="Script" path="res://Scripts/Spin.gd" id="1_wrsk5"]
+[ext_resource type="Texture2D" uid="uid://ce25c73wr64po" path="res://Sprites/shockwave.png" id="2_8i54r"]
+[ext_resource type="Script" path="res://Scripts/Shrink.gd" id="3_iwgy3"]
+
+[sub_resource type="Curve" id="Curve_cmn6x"]
+_data = [Vector2(0, 0), 0.0, 12.6053, 0, 0, Vector2(0.115, 0.993786), 0.0, 0.0, 0, 0, Vector2(0.25, 0.937859), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.81857, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_swnxf"]
+offsets = PackedFloat32Array(0, 0.360215, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Shockwave" type="Node2D" node_paths=PackedStringArray("spins")]
+script = ExtResource("1_wrsk5")
+spins = [NodePath("Shrink")]
+speed = 2.0
+
+[node name="Shrink" type="Sprite2D" parent="."]
+texture = ExtResource("2_8i54r")
+script = ExtResource("3_iwgy3")
+curve = SubResource("Curve_cmn6x")
+base_size = 1.6
+lifetime = 1.0
+gradient = SubResource("Gradient_swnxf")

@@ -1,27 +1,27 @@
 [
-  {
-    "char": "K",
-    "text": "Okay, what's with his laser beam attack.",
-    "sprite": "Normal"
-  },
-  {
-    "char": "K",
-    "text": "It looks like he aims it, and then fires?",
-    "sprite": "Confused"
-  },
-  {
-    "char": "M",
-    "text": "Yeah! You hit the nail on the head.",
-    "sprite": "Yap2"
-  },
-  {
-    "char": "K",
-    "text": "That's it?",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "M",
-    "text": "Yep!",
-    "sprite": "Yap2"
-  }
+	{
+		"char": "K",
+		"text": "Okay, what's with his laser beam attack.",
+		"sprite": "Normal"
+	},
+	{
+		"char": "K",
+		"text": "It looks like he aims it, and then fires?",
+		"sprite": "Confused"
+	},
+	{
+		"char": "M",
+		"text": "Yeah! You hit the nail on the head.",
+		"sprite": "Yap2"
+	},
+	{
+		"char": "K",
+		"text": "That's it?",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "M",
+		"text": "Yep!",
+		"sprite": "Happy"
+	}
 ]

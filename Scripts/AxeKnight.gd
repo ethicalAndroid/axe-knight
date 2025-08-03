@@ -15,12 +15,16 @@ class_name AxeKnight extends LegWalker
 @export var _slash_timer: Timer
 @export var _trail: PackedScene
 @export var _sprite: Blink
-@export var _target: Node2D
+@export var _target: DragonKnight
 @export var _reflect: PackedScene
 @export var _reflect_speed: float
 
 @export var _gradient_charge: Gradient
 @export var _gradient_spent: Gradient
+
+@export var _shine_k: PackedScene
+@export var _shine_both: PackedScene
+@export var _shockwave: PackedScene
 
 enum Attack {
 	Ready, DashSpent, BothSpent, Charged
@@ -83,12 +87,7 @@ func Clash(opponent: Vector2):
 func TrailTimerTimeout():
 	if (attacks != Attack.Ready):
 		var trail: Fading = _trail.instantiate()
-		trail.global_position = _sprite.global_position
-		trail.texture = _sprite.texture
-		trail.global_rotation = _sprite.global_rotation
-		trail.global_scale = _sprite.global_scale
-		trail.flip_h = _sprite.flip_h
-		trail.flip_v = _sprite.flip_v
+		trail.Copy(_sprite)
 		if attacks == Attack.BothSpent:
 			trail.gradient = _gradient_spent
 		else:
@@ -105,6 +104,10 @@ func SlashTimerTimeout():
 
 func Slam(_normal: Vector2):
 	EndDash()
+	var effect: Node2D = _shockwave.instantiate()
+	get_node(Fading.ROOT_PARENT).add_child(effect)
+	effect.global_position = global_position
+
 	_animator.SetDirection(dash_direction.x)
 	_animator.TransitionTo(KnightAnimator.State.Slam)
 	attacks = Attack.BothSpent
@@ -130,15 +133,27 @@ func AxeSwing():
 	_animator.TransitionTo(KnightAnimator.State.Slash)
 	_animator.SetDashDirection(_aiming._direction)
 	var collisions = _slash_cast.get_collision_count()
+	var clash = false
 	if (collisions > 0):
 		attacks = Attack.Charged
 	for i in collisions:
 		var c = _slash_cast.get_collider(i)
 		if c != null:
-			c.call("OnHit", _aiming._direction, true)
 			if c.is_class("RigidBody2D"):
 				ReflectAttack(c.global_position)
-
+			elif c.is_class("CharacterBody2D") && c.IsDashing():
+				clash = true
+			c.call("OnHit", _aiming._direction, true)
+	if clash:
+		var effect: Node2D = _shine_both.instantiate()
+		get_node(Fading.ROOT_PARENT).add_child(effect)
+		effect.global_position = global_position + (_target.global_position - global_position) * 0.5
+		effect.rotation = Vector2.RIGHT.angle_to(_aiming._direction)
+	else:
+		var effect: Node2D = _shine_k.instantiate()
+		get_node(Fading.ROOT_PARENT).add_child(effect)
+		effect.global_position = global_position + _slash_cast.target_position
+		effect.rotation = Vector2.RIGHT.angle_to(_aiming._direction)
 # INPUT
 func _process(_delta: float) -> void:
 	GetInput()

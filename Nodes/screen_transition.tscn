@@ -151,8 +151,8 @@ centered = false
 position = Vector2(960, 540)
 
 [node name="Vortex" type="Sprite2D" parent="Spin/Left/Pivot"]
-modulate = Color(0.525101, 0.525101, 0.525101, 1)
-scale = Vector2(2, 2)
+rotation = 0.785398
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_bctmc")
 
 [node name="Right" type="Sprite2D" parent="Spin"]
@@ -165,7 +165,7 @@ offset = Vector2(960, 0)
 position = Vector2(960, 540)
 
 [node name="Vortex" type="Sprite2D" parent="Spin/Right/Pivot"]
-modulate = Color(0.525101, 0.525101, 0.525101, 1)
 clip_children = 1
-scale = Vector2(2, 2)
+rotation = 0.785398
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_bctmc")

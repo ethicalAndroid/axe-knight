@@ -1,15 +1,17 @@
-[gd_scene load_steps=40 format=3 uid="uid://co7b2f7gh5i1g"]
+[gd_scene load_steps=43 format=3 uid="uid://co7b2f7gh5i1g"]
 
 [ext_resource type="Script" path="res://Scripts/AxeKnight.gd" id="1_8q12i"]
 [ext_resource type="Shape2D" uid="uid://saihr05rsenh" path="res://Shapes/player_shape.tres" id="2_a36ui"]
-[ext_resource type="PackedScene" uid="uid://bjc377441wrlv" path="res://Nodes/red_trail.tscn" id="2_al7ix"]
+[ext_resource type="PackedScene" uid="uid://bjc377441wrlv" path="res://Nodes/trail.tscn" id="2_al7ix"]
 [ext_resource type="PackedScene" uid="uid://cskvx8egixa0y" path="res://Nodes/reflect.tscn" id="3_o58x6"]
 [ext_resource type="Script" path="res://Scripts/LookAt.gd" id="4_8x1hy"]
-[ext_resource type="Gradient" uid="uid://dt7g5dkpjdwyn" path="res://Shapes/red_trail.tres" id="4_bjhlf"]
 [ext_resource type="Texture2D" uid="uid://cyx0ha2eq5vjp" path="res://Sprites/point.png" id="4_y587k"]
 [ext_resource type="Script" path="res://Scripts/CastAt.gd" id="5_baduv"]
 [ext_resource type="Gradient" uid="uid://b8t5rnnivagbe" path="res://Shapes/black_trail.tres" id="5_osat1"]
+[ext_resource type="PackedScene" uid="uid://cjjh73wb2si30" path="res://Nodes/k_shine.tscn" id="6_5xnok"]
 [ext_resource type="Shape2D" uid="uid://qauq24gmkhoj" path="res://Shapes/slash.tres" id="6_mbwxb"]
+[ext_resource type="PackedScene" uid="uid://dpgtll4rhvk2i" path="res://Nodes/both_shine.tscn" id="7_pa0oe"]
+[ext_resource type="PackedScene" uid="uid://cx5md038dtmwy" path="res://Nodes/k_shockwave.tscn" id="8_pbrgn"]
 [ext_resource type="Shape2D" uid="uid://c5avdiprk12bh" path="res://Shapes/slam.tres" id="8_sx560"]
 [ext_resource type="Texture2D" uid="uid://bocq7ctjcxg6k" path="res://Sprites/k-idle.png" id="9_viiqw"]
 [ext_resource type="Texture2D" uid="uid://ureqvts3j478" path="res://Sprites/k-run1.png" id="9_whoha"]
@@ -26,6 +28,9 @@
 [ext_resource type="Texture2D" uid="uid://bgw5270o7tj51" path="res://Sprites/k-hurt.png" id="20_kj1d1"]
 [ext_resource type="Texture2D" uid="uid://v4jdhqej0524" path="res://Sprites/k-slam.png" id="21_q53cn"]
 [ext_resource type="Script" path="res://Scripts/Blink.gd" id="22_6e8qj"]
+
+[sub_resource type="Gradient" id="Gradient_ql6df"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_ljl05"]
 length = 0.001
@@ -335,8 +340,11 @@ _trail = ExtResource("2_al7ix")
 _sprite = NodePath("Pivot/Sprite")
 _reflect = ExtResource("3_o58x6")
 _reflect_speed = 1500.0
-_gradient_charge = ExtResource("4_bjhlf")
+_gradient_charge = SubResource("Gradient_ql6df")
 _gradient_spent = ExtResource("5_osat1")
+_shine_k = ExtResource("6_5xnok")
+_shine_both = ExtResource("7_pa0oe")
+_shockwave = ExtResource("8_pbrgn")
 _animator = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjsnlfbfhi2ct"]
 
 [ext_resource type="Script" path="res://Scripts/TimedAttack.gd" id="1_f6hcp"]
-[ext_resource type="Texture2D" uid="uid://cyx0ha2eq5vjp" path="res://Sprites/point.png" id="2_xpf64"]
+[ext_resource type="Texture2D" uid="uid://dxb87wbvhomhh" path="res://Sprites/s-tremor.png" id="2_vehbv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30caf"]
 size = Vector2(64, 64)
@@ -30,7 +30,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 3.475)]
+"values": [Vector2(0.4, 0.4)]
 }
 
 [sub_resource type="Animation" id="Animation_2tilr"]
@@ -46,7 +46,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.733333, 1, 1.5),
 "transitions": PackedFloat32Array(1, 2, 0.5, 1),
 "update": 0,
-"values": [Vector2(0, 100), Vector2(0, 100), Vector2(0, -20), Vector2(0, 16)]
+"values": [Vector2(0, 100), Vector2(0, 100), Vector2(0, -25), Vector2(0, 16)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -58,7 +58,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.266667, 0.633333, 1, 2),
 "transitions": PackedFloat32Array(1, 2, 0.5, 1, 2, 1),
 "update": 0,
-"values": [Vector2(0.2, 0.695), Vector2(0.7, 2.433), Vector2(0.5, 1.738), Vector2(1, 3.475), Vector2(1, 3.475), Vector2(0.2, 0.695)]
+"values": [Vector2(0.4, 0.6), Vector2(0.4, 0.4), Vector2(0.4, 0.5), Vector2(0.4, 0.4), Vector2(0.4, 0.5), Vector2(0.2, 0.3)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pbtff"]
@@ -78,12 +78,10 @@ direction = Vector2(0, -1)
 rotation = -0.785398
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
-modulate = Color(0, 1, 0, 1)
 z_index = 5
 position = Vector2(0, -20)
-rotation = -1.5708
-scale = Vector2(1, 3.475)
-texture = ExtResource("2_xpf64")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_vehbv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

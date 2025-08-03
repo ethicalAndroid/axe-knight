@@ -1,47 +1,47 @@
 [
-  {
-    "char": "K",
-    "text": "Question.",
-    "sprite": "Normal"
-  },
-  {
-    "char": "K",
-    "text": "How does the time loop work?",
-    "sprite": "Confused"
-  },
-  {
-    "char": "M",
-    "text": "You, and I, are travelling back in time.",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "M",
-    "text": "Repeatedly.",
-    "sprite": "Confused"
-  },
-  {
-    "char": "M",
-    "text": "Until I stop it during the beginning of a loop.",
-    "sprite": "Yap2"
-  },
-  {
-    "char": "K",
-    "text": "So, the Dragon's General doesn't know about it?",
-    "sprite": "Normal"
-  },
-  {
-    "char": "M",
-    "text": "Yes. The general will only change his behavior based on what you do.",
-    "sprite": "Yap1"
-  },
-  {
-    "char": "M",
-    "text": "That includes when we end the loop, and you have to fight him for real.",
-    "sprite": "Normal"
-  },
-  {
-    "char": "K",
-    "text": "Great!",
-    "sprite": "Serious"
-  }
+	{
+		"char": "K",
+		"text": "Question.",
+		"sprite": "Normal"
+	},
+	{
+		"char": "K",
+		"text": "How does the time loop work?",
+		"sprite": "Confused"
+	},
+	{
+		"char": "M",
+		"text": "You, and I, are travelling back in time.",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "M",
+		"text": "Repeatedly.",
+		"sprite": "Confused"
+	},
+	{
+		"char": "M",
+		"text": "Until I stop it during the beginning of a loop.",
+		"sprite": "Yap2"
+	},
+	{
+		"char": "K",
+		"text": "So, the Dragon General doesn't know about it?",
+		"sprite": "Normal"
+	},
+	{
+		"char": "M",
+		"text": "Yes. The general will only change his behavior based on what you do.",
+		"sprite": "Yap1"
+	},
+	{
+		"char": "M",
+		"text": "That includes when we end the loop, and you have to fight him for real.",
+		"sprite": "Normal"
+	},
+	{
+		"char": "K",
+		"text": "Great!",
+		"sprite": "Serious"
+	}
 ]

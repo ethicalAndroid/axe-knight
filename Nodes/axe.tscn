@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbwkkhb36d7e0"]
+[gd_scene load_steps=5 format=3 uid="uid://cbwkkhb36d7e0"]
 
 [ext_resource type="Script" path="res://Scripts/Projectile.gd" id="1_xfp4g"]
-[ext_resource type="Texture2D" uid="uid://c6we6b7w7l6fw" path="res://Sprites/Circle.png" id="2_8tpa7"]
+[ext_resource type="Texture2D" uid="uid://p7n75ctqy7mv" path="res://Sprites/s-axe.png" id="2_6j1ge"]
+[ext_resource type="Script" path="res://Scripts/Spin.gd" id="2_in62j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n8m4a"]
 radius = 64.0
@@ -18,9 +19,13 @@ script = ExtResource("1_xfp4g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n8m4a")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 0.0117647, 1)
-scale = Vector2(4, 4)
-texture = ExtResource("2_8tpa7")
+[node name="Spin" type="Node2D" parent="." node_paths=PackedStringArray("spins")]
+script = ExtResource("2_in62j")
+spins = [NodePath("Sprite2D")]
+speed = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Spin"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_6j1ge")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

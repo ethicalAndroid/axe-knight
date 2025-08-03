@@ -8,7 +8,7 @@ point_count = 6
 
 [node name="LaserBeam" type="Line2D"]
 z_index = -1
-default_color = Color(0, 1, 0, 1)
+default_color = Color(0.345098, 1, 0.333333, 1)
 script = ExtResource("1_015sq")
 lifetime = 0.5
 curve = SubResource("Curve_7tc25")

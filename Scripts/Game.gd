@@ -14,7 +14,7 @@ signal loop_menu()
 signal final_menu()
 signal final_lost()
 signal final_won()
-
+signal final_timeout()
 
 var final_loop = false
 var battle: PauseGame
@@ -81,5 +81,12 @@ func OnLose():
 	if final_loop:
 		battle.Remove()
 		final_lost.emit()
+	else:
+		transition.queue("screen_close")
+
+func OnTimeout():
+	if final_loop:
+		battle.Remove()
+		final_timeout.emit()
 	else:
 		transition.queue("screen_close")

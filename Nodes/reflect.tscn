@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cskvx8egixa0y"]
 
 [ext_resource type="Script" path="res://Scripts/DirectionProjectile.gd" id="1_nbphu"]
-[ext_resource type="Texture2D" uid="uid://cyx0ha2eq5vjp" path="res://Sprites/point.png" id="2_5djg0"]
+[ext_resource type="Texture2D" uid="uid://e2eqioxdaqhe" path="res://Sprites/s-reflect.png" id="2_2y50m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2g0u6"]
 radius = 32.0
@@ -22,9 +22,8 @@ shape = SubResource("CircleShape2D_2g0u6")
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
-modulate = Color(1, 0.516667, 0, 1)
-position = Vector2(-29, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("2_5djg0")
+position = Vector2(-8, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_2y50m")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

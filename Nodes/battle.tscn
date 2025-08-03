@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://b47ocalwjtfgw"]
+[gd_scene load_steps=26 format=4 uid="uid://b47ocalwjtfgw"]
 
 [ext_resource type="Script" path="res://Scripts/PauseGame.gd" id="1_all60"]
 [ext_resource type="TileSet" uid="uid://reoc0hubig32" path="res://Tilesets/main_tiles.tres" id="2_47fn8"]
@@ -10,8 +10,9 @@
 [ext_resource type="FontFile" uid="uid://dnydjkbstusui" path="res://Oldtimer.ttf" id="8_ks2sf"]
 [ext_resource type="Script" path="res://Scripts/TextTimer.gd" id="9_yyof8"]
 [ext_resource type="Script" path="res://Scripts/LifeCount.gd" id="10_af6by"]
-[ext_resource type="Texture2D" uid="uid://c6we6b7w7l6fw" path="res://Sprites/Circle.png" id="11_pcvdw"]
+[ext_resource type="Texture2D" uid="uid://dt22uxjvts3nu" path="res://Sprites/heart1.png" id="11_hhkw1"]
 [ext_resource type="Script" path="res://Scripts/BossHealth.gd" id="12_cpx36"]
+[ext_resource type="Texture2D" uid="uid://pguifrjou1pu" path="res://Sprites/heart2.png" id="12_r2o8x"]
 [ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="13_spujk"]
 [ext_resource type="Texture2D" uid="uid://nmcrofg5lqvf" path="res://Sprites/boss-bar-segment-empty.png" id="14_3ju8e"]
 [ext_resource type="Texture2D" uid="uid://2p8v8l5la3i7" path="res://Sprites/boss-bar-segment.png" id="15_we1wr"]
@@ -160,7 +161,7 @@ _target = NodePath("../DragonKnight")
 
 [node name="DragonKnight" parent="." node_paths=PackedStringArray("_target", "_dash_targets") instance=ExtResource("7_a5cv3")]
 process_mode = 4
-position = Vector2(1486, 728)
+position = Vector2(1486, 748)
 _target = NodePath("../AxeKnight")
 _dash_targets = [NodePath("../Dashes/Left"), null, NodePath("../Dashes/Right")]
 
@@ -190,7 +191,8 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -400.0
-offset_bottom = 140.0
+offset_top = 30.0
+offset_bottom = 170.0
 grow_horizontal = 0
 
 [node name="TextTimer" type="RichTextLabel" parent="UI/Timer"]
@@ -216,12 +218,12 @@ metadata/_edit_use_anchors_ = true
 [node name="HP" type="Control" parent="UI" node_paths=PackedStringArray("life_sprites")]
 anchors_preset = 0
 offset_left = 40.0
-offset_top = 40.0
+offset_top = 30.0
 offset_right = 460.0
-offset_bottom = 180.0
+offset_bottom = 170.0
 script = ExtResource("10_af6by")
-life_tex = ExtResource("11_pcvdw")
-dead_tex = ExtResource("4_rj11j")
+life_tex = ExtResource("11_hhkw1")
+dead_tex = ExtResource("12_r2o8x")
 life_sprites = [NodePath("1"), NodePath("2"), NodePath("3")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/HP"]
@@ -232,28 +234,31 @@ autoplay = "bob"
 
 [node name="1" type="TextureRect" parent="UI/HP"]
 layout_mode = 0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_right = 120.0
+offset_bottom = 120.0
 pivot_offset = Vector2(50, 50)
-texture = ExtResource("11_pcvdw")
+texture = ExtResource("11_hhkw1")
+expand_mode = 2
 
 [node name="2" type="TextureRect" parent="UI/HP"]
 layout_mode = 0
 offset_left = 140.0
-offset_right = 240.0
-offset_bottom = 100.0
+offset_right = 260.0
+offset_bottom = 120.0
 scale = Vector2(0.932653, 0.932653)
 pivot_offset = Vector2(50, 50)
-texture = ExtResource("11_pcvdw")
+texture = ExtResource("11_hhkw1")
+expand_mode = 2
 
 [node name="3" type="TextureRect" parent="UI/HP"]
 layout_mode = 0
 offset_left = 280.0
-offset_right = 380.0
-offset_bottom = 100.0
+offset_right = 400.0
+offset_bottom = 120.0
 scale = Vector2(0.902041, 0.902041)
 pivot_offset = Vector2(50, 50)
-texture = ExtResource("11_pcvdw")
+texture = ExtResource("11_hhkw1")
+expand_mode = 2
 
 [node name="Boss Bar" type="Control" parent="UI" node_paths=PackedStringArray("bar")]
 layout_mode = 1
@@ -315,7 +320,8 @@ stretch_mode = 1
 
 [connection signal="on_hit" from="AxeKnight" to="UI/HP" method="LoseLife"]
 [connection signal="on_hit" from="DragonKnight" to="UI/Boss Bar" method="LoseLife"]
-[connection signal="on_death" from="UI/HP" to="." method="Pause"]
+[connection signal="timeout" from="UI/Timer/TextTimer" to="." method="DeferLose"]
 [connection signal="on_death" from="UI/HP" to="." method="DeferLose"]
-[connection signal="on_death" from="UI/Boss Bar" to="." method="Pause"]
+[connection signal="on_death" from="UI/HP" to="." method="Pause"]
 [connection signal="on_death" from="UI/Boss Bar" to="." method="DeferWin"]
+[connection signal="on_death" from="UI/Boss Bar" to="." method="Pause"]

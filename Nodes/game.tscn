@@ -1,9 +1,8 @@
-[gd_scene load_steps=71 format=3 uid="uid://bu0kfv25rq6qt"]
+[gd_scene load_steps=70 format=3 uid="uid://bu0kfv25rq6qt"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_uem2s"]
 [ext_resource type="PackedScene" uid="uid://b47ocalwjtfgw" path="res://Nodes/battle.tscn" id="2_4j5bd"]
 [ext_resource type="JSON" path="res://Dialogue/talk01.json" id="3_3k3d6"]
-[ext_resource type="JSON" path="res://Dialogue/intro.json" id="3_n821p"]
 [ext_resource type="Script" path="res://Scripts/DDialogue.gd" id="4_7ptc5"]
 [ext_resource type="Texture2D" uid="uid://cgn12mbiexwfs" path="res://Sprites/rect.png" id="4_jhfk8"]
 [ext_resource type="JSON" path="res://Dialogue/talk02.json" id="4_kqyhy"]
@@ -233,7 +232,7 @@ transition = NodePath("ScreenTransition")
 battle_scene = ExtResource("2_4j5bd")
 dialogue = NodePath("Control")
 talk_blocks = Array[JSON]([ExtResource("3_3k3d6"), ExtResource("4_kqyhy"), ExtResource("5_r225q"), ExtResource("6_4kk0u"), ExtResource("7_moa0y"), ExtResource("8_h1nfx"), ExtResource("9_cppiu"), ExtResource("10_04w4y"), ExtResource("11_f62sw"), ExtResource("12_6awd2"), ExtResource("13_ruqm6"), ExtResource("14_ss55a"), ExtResource("15_xmoc0"), ExtResource("16_0nxox"), ExtResource("17_a8nty"), ExtResource("18_x6mh6"), ExtResource("19_2wbnm"), ExtResource("20_l6ox3"), ExtResource("21_gkj66"), ExtResource("22_00ynn"), ExtResource("23_2ngnr"), ExtResource("24_x2jan")])
-intro = ExtResource("3_n821p")
+intro = ExtResource("3_3k3d6")
 final_loop_ask = Array[JSON]([ExtResource("26_frf5k"), ExtResource("27_y6eet"), ExtResource("28_m7k3a")])
 final_loop_yes = Array[JSON]([ExtResource("29_l3ksu"), ExtResource("30_u4q5d"), ExtResource("31_3kxhd")])
 final_loop_no = Array[JSON]([ExtResource("32_t5bm8"), ExtResource("33_mhtav"), ExtResource("34_cbwo4")])
@@ -382,15 +381,20 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -400.0
-offset_right = -100.0
+offset_left = 400.0
+offset_right = 700.0
 offset_bottom = 100.0
 grow_horizontal = 1
 grow_vertical = 1
 pivot_offset = Vector2(150, 50)
-direction = Vector2(-1, 0)
+direction = Vector2(1, 0)
+
+[node name="RichTextLabel" parent="Choices/Loop/pivot/Talk" index="1"]
+text = "[center]Loop[/center]"
 
 [node name="Loop!" parent="Choices/Loop/pivot" instance=ExtResource("20_70yp2")]
+process_mode = 4
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -411,13 +415,13 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_top = -300.0
-offset_right = 300.0
-offset_bottom = -200.0
+offset_left = -400.0
+offset_right = -100.0
+offset_bottom = 100.0
 grow_horizontal = 1
 grow_vertical = 1
 pivot_offset = Vector2(150, 50)
-direction = Vector2(0, -1)
+direction = Vector2(-1, 0)
 
 [node name="RichTextLabel" parent="Choices/Loop/pivot/Finish It" index="1"]
 offset_top = -41.0

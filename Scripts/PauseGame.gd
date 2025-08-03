@@ -24,3 +24,7 @@ func DeferLose():
 signal defer_win()
 func DeferWin():
     defer_win.emit()
+
+signal defer_timeoout()
+func DeferTimeout():
+    defer_timeoout.emit()

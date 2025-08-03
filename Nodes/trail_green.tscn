@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0541jxm7oc6n"]
+
+[ext_resource type="Script" path="res://Scripts/Fading.gd" id="1_s3l5w"]
+[ext_resource type="Gradient" uid="uid://dt7g5dkpjdwyn" path="res://Shapes/red_trail.tres" id="2_82owk"]
+
+[node name="GreenTrail" type="Sprite2D"]
+z_index = -1
+script = ExtResource("1_s3l5w")
+lifetime = 0.5
+gradient = ExtResource("2_82owk")
